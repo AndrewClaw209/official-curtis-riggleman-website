@@ -350,7 +350,8 @@ body::before {
 
 .hero-center-art {
   position: absolute;
-  top: 52%;
+  /* Anchor to viewport height: hero-stage collapses because its children are absolutely positioned. */
+  top: 54vh;
   left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(360px, 54vw, 1060px);
