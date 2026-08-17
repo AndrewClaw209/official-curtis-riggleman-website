@@ -353,7 +353,8 @@ body::before {
   /* Anchor to viewport height: hero-stage collapses because its children are absolutely positioned. */
   top: 54vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* Using -50% Y centering was clipping the cutout against the hero's overflow:hidden. */
+  transform: translate(-50%, 0);
   width: clamp(360px, 54vw, 1060px);
   z-index: 2; /* below title (title z-index is 3) */
   pointer-events: none;
