@@ -2,7 +2,6 @@
 
 import { useCallback, useRef } from "react";
 import Image from "next/image";
-import RevealOnScroll from "../components/RevealOnScroll";
 
 const socialLinks = [
   {
@@ -35,8 +34,6 @@ const topTabs = [
   { label: "Sales Coaching", href: "#book-call" },
   { label: "Media", href: "/media" }
 ];
-const leftTabs = topTabs.slice(0, 3);
-const rightTabs = topTabs.slice(3);
 
 const offers = [
   {
@@ -183,19 +180,13 @@ function SocialIcon({ type }) {
 export default function Home() {
   return (
     <>
-      <RevealOnScroll />
-
       <header className="hero" id="top">
         <div className="hero-shell">
-          <div className="hero-topbar reveal" aria-label="Primary navigation">
-            <nav className="hero-nav hero-nav-left">
-              {leftTabs.map((tab) => (
-                <a key={tab.label} href={tab.href}>
-                  {tab.label}
-                </a>
-              ))}
-            </nav>
+          <a className="home-button" href="#top" aria-label="Home">
+            Home
+          </a>
 
+          <div className="hero-topbar reveal" aria-label="Primary navigation">
             <Image
               src="/assets/logo-curtis-primary-hd.png"
               alt="Official Curtis Riggleman logo"
@@ -204,14 +195,6 @@ export default function Home() {
               className="hero-logo"
               priority
             />
-
-            <nav className="hero-nav hero-nav-right">
-              {rightTabs.map((tab) => (
-                <a key={tab.label} href={tab.href}>
-                  {tab.label}
-                </a>
-              ))}
-            </nav>
           </div>
 
           <div className="hero-stage reveal">
@@ -245,210 +228,43 @@ export default function Home() {
           </div>
 
           <div className="hero-cta-row reveal">
-            <a className="btn btn-gold" href="#book-call">
+            <a
+              className="btn btn-gold"
+              href={hasCalendar ? ghlCalendarUrl : "#"}
+              target={hasCalendar ? "_blank" : undefined}
+              rel={hasCalendar ? "noreferrer" : undefined}
+              onClick={(e) => {
+                if (hasCalendar) return;
+                e.preventDefault();
+                window.alert("Calendar is not configured yet. Set NEXT_PUBLIC_GHL_CALENDAR_URL.");
+              }}
+            >
               Book Strategy Call
             </a>
-            <a className="btn btn-outline" href="#apply-now">
+            <a
+              className="btn btn-outline"
+              href={hasForm ? ghlFormUrl : "#"}
+              target={hasForm ? "_blank" : undefined}
+              rel={hasForm ? "noreferrer" : undefined}
+              onClick={(e) => {
+                if (hasForm) return;
+                e.preventDefault();
+                window.alert("Lead form is not configured yet. Set NEXT_PUBLIC_GHL_FORM_URL.");
+              }}
+            >
               Apply For Coaching
             </a>
           </div>
 
-          <div className="hero-social-row reveal" aria-label="Curtis social media links">
-            {socialLinks.map((link) => (
-              <a key={link.label} className="hero-social-link" href={link.href} target="_blank" rel="noreferrer">
-                <SocialIcon type={link.icon} />
-                <span className="sr-only">{link.label}</span>
+          <div className="bottom-tabs" aria-label="Primary navigation">
+            {topTabs.map((tab) => (
+              <a key={tab.label} href={tab.href}>
+                {tab.label}
               </a>
             ))}
           </div>
         </div>
       </header>
-
-      <main>
-        <section className="section band reveal" id="about">
-          <div className="band-grid">
-            <article>
-              <h2>In The Trenches, Not The Sidelines</h2>
-              <p>
-                Curtis leads inside real dealership operations while coaching teams nationwide. That means every
-                framework is pressure-tested, not theory.
-              </p>
-            </article>
-            <article>
-              <h2>Built For Results</h2>
-              <p>More appointments, tighter process, stronger confidence, higher gross, and better leadership standards.</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="section reveal" id="offers">
-          <p className="kicker">Core Offers</p>
-          <h2>How Curtis Helps Teams Win</h2>
-          <div className="offer-grid">
-            {offers.map((offer) => (
-              <article key={offer.title} className="card">
-                <h3>{offer.title}</h3>
-                <p>{offer.body}</p>
-                <ul>
-                  {offer.bullets.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section cta-band reveal" id="book-call">
-          <p className="kicker">{hasCalendar ? "GO High Level Calendar" : "Calendar Placeholder"}</p>
-          <h2>Book A Strategy Call</h2>
-          <p>
-            {hasCalendar
-              ? "Live booking is active via GO High Level."
-              : "Placeholder calendar is active for V1 testing. Swap in the live GHL URL when ready."}
-          </p>
-          {hasCalendar ? (
-            <div className="embed-shell">
-              <iframe
-                src={ghlCalendarUrl}
-                title="Book a strategy call"
-                loading="lazy"
-                allow="clipboard-write"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-          ) : (
-            <div className="placeholder-shell" role="img" aria-label="Calendar placeholder preview">
-              <div className="placeholder-head">
-                <strong>Curtis Strategy Session</strong>
-                <span>45 min</span>
-              </div>
-              <div className="placeholder-grid">
-                <button type="button">Tue 10:00 AM</button>
-                <button type="button">Tue 1:30 PM</button>
-                <button type="button">Wed 9:00 AM</button>
-                <button type="button">Wed 3:00 PM</button>
-              </div>
-              <p>Connect `NEXT_PUBLIC_GHL_CALENDAR_URL` to replace this placeholder.</p>
-            </div>
-          )}
-        </section>
-
-        <section className="section reveal" id="proof">
-          <p className="kicker">Media</p>
-          <h2>Studio Content + Social Proof</h2>
-          <div className="testimonial-grid">
-            {testimonials.map((item) => (
-              <blockquote key={item.cite}>
-                <p>&quot;{item.quote}&quot;</p>
-                <cite>{item.cite}</cite>
-              </blockquote>
-            ))}
-          </div>
-          <div className="media-feature-grid">
-            <article className="media-card">
-              <Image
-                src="/assets/curtis-podcast.jpg"
-                alt="Curtis in the studio"
-                width={1800}
-                height={1012}
-                className="media-card-image"
-              />
-              <div className="media-card-body">
-                <h3>Curtis In The Studio</h3>
-                <p>Follow Curtis on YouTube for training clips, media drops, and fresh content.</p>
-                <a className="btn btn-outline media-card-link" href={youtubeChannelUrl} target="_blank" rel="noreferrer">
-                  Visit YouTube Channel
-                </a>
-              </div>
-            </article>
-
-            <article className="media-card">
-              <a href={featuredMediaVideoUrl} target="_blank" rel="noreferrer" className="media-card-thumb-link">
-                <img
-                  src={featuredMediaVideoThumb}
-                  alt="Thumbnail for Curtis Riggleman YouTube video"
-                  className="media-card-image"
-                  loading="lazy"
-                />
-              </a>
-              <div className="media-card-body">
-                <h3>Featured YouTube Video</h3>
-                <p>Watch this highlight video with one of Curtis&apos; best thumbnails.</p>
-                <a className="btn btn-gold media-card-link" href={featuredMediaVideoUrl} target="_blank" rel="noreferrer">
-                  Watch This Video
-                </a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section className="section reveal" id="process">
-          <p className="kicker">Engagement Process</p>
-          <h2>Simple Path To Execution</h2>
-          <ol className="steps">
-            <li>
-              <span>1</span>
-              <div>
-                <h3>Schedule The Call</h3>
-                <p>Review your current process, goals, and leadership bottlenecks.</p>
-              </div>
-            </li>
-            <li>
-              <span>2</span>
-              <div>
-                <h3>Get Your Plan</h3>
-                <p>Receive a clear rollout plan for training cadence and store-level implementation.</p>
-              </div>
-            </li>
-            <li>
-              <span>3</span>
-              <div>
-                <h3>Execute + Measure</h3>
-                <p>Install word tracks, accountability, and performance checkpoints that compound over time.</p>
-              </div>
-            </li>
-          </ol>
-        </section>
-
-        <section className="section cta-band reveal" id="apply-now">
-          <p className="kicker">{hasForm ? "GO High Level Form" : "Form Placeholder"}</p>
-          <h2>Apply For Coaching</h2>
-          <p>
-            {hasForm
-              ? "Live lead capture is active via GO High Level."
-              : "Placeholder lead form is active for V1 testing. Swap in the live GHL URL when ready."}
-          </p>
-          {hasForm ? (
-            <div className="embed-shell">
-              <iframe
-                src={ghlFormUrl}
-                title="Coaching application form"
-                loading="lazy"
-                allow="clipboard-write"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-          ) : (
-            <div className="placeholder-shell" role="img" aria-label="Lead form placeholder preview">
-              <div className="placeholder-head">
-                <strong>Coaching Application</strong>
-                <span>V1 Preview</span>
-              </div>
-              <div className="placeholder-fields">
-                <div>Full Name</div>
-                <div>Best Phone</div>
-                <div>Dealership / Team</div>
-                <div>Biggest Sales Bottleneck</div>
-              </div>
-              <button type="button" className="btn btn-gold placeholder-submit">
-                Submit Application
-              </button>
-              <p>Connect `NEXT_PUBLIC_GHL_FORM_URL` to replace this placeholder.</p>
-            </div>
-          )}
-        </section>
-      </main>
 
       <aside className="sticky-video" aria-label="Featured Curtis video">
         <iframe
@@ -460,18 +276,6 @@ export default function Home() {
           allowFullScreen
         />
       </aside>
-
-      <footer className="footer">
-        <Image
-          src="/assets/logo-curtis-primary-hd.png"
-          alt="Official Curtis Riggleman logo"
-          width={2400}
-          height={1061}
-          className="footer-logo"
-        />
-        <p>Official Curtis Riggleman</p>
-        <p>Built by AWEVO Software Solutions</p>
-      </footer>
     </>
   );
 }

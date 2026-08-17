@@ -1,5 +1,6 @@
 import { Anton, Manrope } from "next/font/google";
 import "./globals.css";
+import "../styles.css";
 
 const anton = Anton({
   variable: "--font-anton",
