@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 1024" preserveAspectRatio="none" role="img" aria-label="Right decorative golden gate door">
+  <defs>
+    <linearGradient id="bgGoldR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9e6b6"/>
+      <stop offset="0.28" stop-color="#e2bf74"/>
+      <stop offset="0.6" stop-color="#b78334"/>
+      <stop offset="1" stop-color="#6f4618"/>
+    </linearGradient>
+    <linearGradient id="railGoldR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6b4317"/>
+      <stop offset="0.5" stop-color="#ffdf96"/>
+      <stop offset="1" stop-color="#7e501d"/>
+    </linearGradient>
+    <linearGradient id="barGoldR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fce9bd"/>
+      <stop offset="0.45" stop-color="#cd9c47"/>
+      <stop offset="1" stop-color="#815321"/>
+    </linearGradient>
+    <radialGradient id="haloR" cx="0.48" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#fff5d4" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grainR" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="2" seed="23"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.13"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="768" height="1024" fill="url(#bgGoldR)"/>
+  <rect x="18" y="18" width="732" height="988" fill="none" stroke="url(#railGoldR)" stroke-width="24"/>
+  <rect x="46" y="46" width="676" height="932" fill="none" stroke="#4a2f12" stroke-opacity="0.4" stroke-width="4"/>
+
+  <g stroke="url(#railGoldR)" stroke-width="10" fill="none" opacity="0.95">
+    <path d="M74 124 H664"/>
+    <path d="M74 910 H664"/>
+    <path d="M74 520 H664"/>
+  </g>
+
+  <g fill="url(#barGoldR)" opacity="0.97">
+    <rect x="84" y="148" width="20" height="734" rx="3"/>
+    <rect x="130" y="148" width="20" height="734" rx="3"/>
+    <rect x="176" y="148" width="20" height="734" rx="3"/>
+    <rect x="222" y="148" width="20" height="734" rx="3"/>
+    <rect x="268" y="148" width="20" height="734" rx="3"/>
+    <rect x="314" y="148" width="20" height="734" rx="3"/>
+    <rect x="360" y="148" width="20" height="734" rx="3"/>
+    <rect x="406" y="148" width="20" height="734" rx="3"/>
+    <rect x="452" y="148" width="20" height="734" rx="3"/>
+    <rect x="498" y="148" width="20" height="734" rx="3"/>
+    <rect x="544" y="148" width="20" height="734" rx="3"/>
+    <rect x="590" y="148" width="20" height="734" rx="3"/>
+    <rect x="636" y="148" width="20" height="734" rx="3"/>
+  </g>
+
+  <g fill="none" stroke="url(#railGoldR)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.94">
+    <path d="M666 330 Q562 188 386 160"/>
+    <path d="M666 360 Q552 228 386 204"/>
+    <path d="M666 392 Q540 266 386 246"/>
+  </g>
+
+  <g transform="translate(540 200)">
+    <circle cx="0" cy="0" r="52" fill="rgba(56,34,12,0.35)"/>
+    <circle cx="0" cy="0" r="48" fill="none" stroke="url(#railGoldR)" stroke-width="8"/>
+    <path d="M38 -6 C20 -36 -2 -34 -24 -8 C-8 -4 2 8 4 28 C14 14 26 6 38 -6 Z" fill="#f9df9f"/>
+    <path d="M-12 -20 C-28 -26 -40 -18 -42 -2 C-34 0 -28 8 -28 20 C-18 8 -8 -2 -12 -20 Z" fill="#e9bf6d"/>
+    <circle cx="6" cy="-4" r="3" fill="#4c2d12"/>
+  </g>
+
+  <g transform="translate(540 676)">
+    <circle cx="0" cy="0" r="52" fill="rgba(56,34,12,0.35)"/>
+    <circle cx="0" cy="0" r="48" fill="none" stroke="url(#railGoldR)" stroke-width="8"/>
+    <path d="M36 14 C44 -10 26 -36 -2 -36 C-22 -36 -36 -24 -40 -8 C-28 -10 -20 -2 -20 12 C-8 8 6 12 16 26 C22 20 30 18 36 14 Z" fill="#f6d791"/>
+    <path d="M6 -16 C-6 -26 -22 -22 -28 -6 C-18 -4 -10 2 -8 12 C-2 2 4 -2 6 -16 Z" fill="#d8a951"/>
+  </g>
+
+  <g transform="translate(390 520)">
+    <rect x="-58" y="-74" width="116" height="148" rx="26" fill="rgba(40,24,8,0.34)" stroke="url(#railGoldR)" stroke-width="7"/>
+    <text x="0" y="18" text-anchor="middle" font-family="Cinzel, Trajan Pro, serif" font-size="86" font-weight="700" fill="#ffe2a6">R</text>
+  </g>
+
+  <circle cx="68" cy="518" r="20" fill="none" stroke="url(#railGoldR)" stroke-width="8"/>
+  <rect x="56" y="504" width="24" height="28" rx="7" fill="#6f4418" stroke="#f3d38f" stroke-width="2"/>
+
+  <rect x="0" y="0" width="24" height="1024" fill="url(#railGoldR)" opacity="0.96"/>
+  <rect x="24" y="0" width="2" height="1024" fill="#3e260f" opacity="0.72"/>
+
+  <rect width="768" height="1024" fill="url(#haloR)"/>
+  <rect width="768" height="1024" filter="url(#grainR)" opacity="0.3"/>
+</svg>

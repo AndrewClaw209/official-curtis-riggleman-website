@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-dark: #0a0d12;
+  --gold: #f2cd7f;
+  --gold-strong: #e2a73f;
+  --text-soft: #f7f2e5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 50% 35%, #1a2230 0%, #0a0d12 66%);
+  color: var(--text-soft);
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 11, 16, 0.1) 0%, rgba(8, 11, 16, 0.82) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-shell {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  padding: clamp(0.8rem, 2vw, 1.4rem) clamp(1rem, 2vw, 2rem) clamp(5rem, 10vh, 7rem);
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  overflow: hidden;
+}
+
+.home-button {
+  position: absolute;
+  top: clamp(0.8rem, 1.8vw, 1.4rem);
+  left: clamp(0.8rem, 1.8vw, 1.4rem);
+  z-index: 4;
+  text-decoration: none;
+  color: #fff7df;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 236, 187, 0.45);
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.home-button:hover {
+  color: var(--gold);
+  border-color: rgba(255, 236, 187, 0.9);
+}
+
+.hero-stage {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: 0;
+}
+
+.hero-title {
+  position: absolute;
+  z-index: 3;
+  top: 48%;
+  left: 50%;
+  width: 100vw;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  text-transform: uppercase;
+  font-family: "Anton", sans-serif;
+  line-height: 0.95;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.03em, 0.5vw, 0.15em);
+  max-width: 76vw;
+  padding-left: clamp(0.45rem, 1.2vw, 1.3rem);
+  padding-bottom: clamp(0.3rem, 0.8vw, 0.9rem);
+}
+
+.hero-line {
+  display: block;
+  color: var(--text-soft);
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.64);
+}
+
+.hero-line-accent {
+  color: var(--gold-strong);
+  font-size: clamp(0.95rem, 2.2vw, 1.9rem);
+  letter-spacing: 0.04em;
+}
+
+.hero-line-subhead {
+  margin-top: 0.08em;
+  font-size: clamp(0.9rem, 1.9vw, 1.55rem);
+  letter-spacing: 0.03em;
+}
+
+.hero-line-with {
+  display: inline-block;
+  font-size: 0.72em;
+}
+
+.hero-line-name {
+  margin-top: 0.04em;
+  font-size: clamp(2.5rem, 10.5vw, 12.5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero-line-surname {
+  display: block;
+  width: 100%;
+  padding-left: clamp(0.5rem, 1vw, 1rem);
+  font-size: clamp(4.6rem, 18.8vw, 24rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.hero-push-line {
+  display: inline-flex;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.hero-push-line-inline {
+  display: inline-flex;
+}
+
+.hero-push-char {
+  display: inline-block;
+  transform: translate3d(var(--push-x, 0px), var(--push-y, 0px), 0);
+  transition: transform 120ms ease-out;
+  will-change: transform;
+}
+
+.hero-cutout {
+  position: relative;
+  z-index: 2;
+  width: clamp(560px, 56vw, 1060px);
+  max-width: 96vw;
+  height: auto;
+  transform: translateY(3%);
+  clip-path: inset(0 0 44% 0);
+  margin-bottom: -30%;
+  filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.74));
+}
+
+.hero-social-row {
+  position: relative;
+  z-index: 3;
+  margin: 0 auto clamp(0.65rem, 1.4vh, 1rem);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-social-link {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 236, 187, 0.45);
+  background: rgba(0, 0, 0, 0.46);
+}
+
+.hero-social-link:hover {
+  border-color: rgba(255, 236, 187, 0.85);
+  transform: translateY(-1px);
+}
+
+.hero-social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: #f8dfab;
+  stroke: #f8dfab;
+  stroke-width: 1.4;
+}
+
+.hero-social-link .icon-instagram {
+  fill: none;
+}
+
+.hero-social-link .icon-facebook,
+.hero-social-link .icon-tiktok,
+.hero-social-link .icon-youtube {
+  stroke: none;
+}
+
+.bottom-tabs {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.55rem, 1.2vh, 1rem);
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.4vw, 1.35rem);
+  width: min(1300px, calc(100vw - 1.3rem));
+  flex-wrap: wrap;
+  border: 1px solid rgba(242, 205, 127, 0.24);
+  background: rgba(4, 6, 10, 0.78);
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  backdrop-filter: blur(6px);
+}
+
+.bottom-tabs a {
+  text-decoration: none;
+  color: #fff7df;
+  letter-spacing: 0.08em;
+  font-size: clamp(0.66rem, 1vw, 0.78rem);
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.36rem 0.45rem;
+}
+
+.bottom-tabs a:hover {
+  color: var(--gold);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 980px) {
+  .hero-shell {
+    padding-bottom: 6.3rem;
+  }
+
+  .hero-cutout {
+    width: clamp(460px, 78vw, 900px);
+  }
+
+  .hero-title-stack {
+    max-width: 92vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-shell {
+    padding: 0.8rem 0.6rem 7rem;
+  }
+
+  .hero-title {
+    top: 45%;
+  }
+
+  .hero-line-name {
+    font-size: clamp(2.2rem, 14vw, 5rem);
+  }
+
+  .hero-line-surname {
+    font-size: clamp(3.5rem, 22vw, 8.4rem);
+  }
+
+  .bottom-tabs {
+    border-radius: 1rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+  }
+
+  .bottom-tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .bottom-tabs::-webkit-scrollbar-thumb {
+    background: rgba(242, 205, 127, 0.45);
+    border-radius: 999px;
+  }
+}
