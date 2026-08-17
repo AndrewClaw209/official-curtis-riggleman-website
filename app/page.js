@@ -217,14 +217,23 @@ export default function Home() {
                 <CursorPushText text="RIGGLEMAN" />
               </span>
             </h1>
-            <Image
-              src="/assets/cutouts/curtis-hero-primary.png"
-              alt="Curtis Riggleman"
-              width={1365}
-              height={2047}
-              className="hero-cutout"
-              priority
-            />
+            <div className="hero-center-art" aria-hidden="true">
+              <Image
+                src="/assets/cutouts/curtis-hero-center.png"
+                alt="Curtis Riggleman"
+                width={1366}
+                height={2048}
+                className="hero-center-curtis"
+                priority
+              />
+              <Image
+                src="/assets/cutouts/curtis-logo-across.png"
+                alt=""
+                width={1024}
+                height={1024}
+                className="hero-center-logo"
+              />
+            </div>
           </div>
 
           <div className="hero-cta-row reveal">

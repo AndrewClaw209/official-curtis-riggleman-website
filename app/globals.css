@@ -18,7 +18,8 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: radial-gradient(circle at 50% 35%, #1a2230 0%, #0a0d12 66%);
   color: var(--text-soft);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body::before {
@@ -34,10 +35,10 @@ body::before {
   position: relative;
   z-index: 1;
   width: 100vw;
-  height: 100vh;
-  padding: clamp(0.8rem, 2vw, 1.4rem) clamp(1rem, 2vw, 2rem) clamp(5rem, 10vh, 7rem);
+  min-height: calc(100vh + clamp(1.5rem, 3vh, 3rem));
+  padding: clamp(0.8rem, 2vw, 1.4rem) clamp(1rem, 2vw, 2rem) clamp(6rem, 12vh, 8.5rem);
   display: grid;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: auto 1fr auto;
   overflow: hidden;
 }
 
@@ -246,11 +247,11 @@ body::before {
 }
 
 .bottom-tabs {
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: clamp(0.55rem, 1.2vh, 1rem);
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +261,7 @@ body::before {
   border: 1px solid rgba(242, 205, 127, 0.24);
   background: rgba(4, 6, 10, 0.78);
   border-radius: 999px;
-  padding: 0.45rem 0.7rem;
+  padding: 0.45rem 0.7rem calc(0.45rem + env(safe-area-inset-bottom));
   backdrop-filter: blur(6px);
 }
 
@@ -293,7 +294,7 @@ body::before {
 
 @media (max-width: 980px) {
   .hero-shell {
-    padding-bottom: 6.3rem;
+    padding-bottom: 7rem;
   }
 
   .hero-cutout {
@@ -307,7 +308,7 @@ body::before {
 
 @media (max-width: 700px) {
   .hero-shell {
-    padding: 0.8rem 0.6rem 7rem;
+    padding: 0.8rem 0.6rem 8.2rem;
   }
 
   .hero-title {
@@ -345,4 +346,33 @@ body::before {
     right: 0.8rem;
     border-radius: 14px;
   }
+}
+
+.hero-center-art {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(360px, 54vw, 1060px);
+  z-index: 2; /* below title (title z-index is 3) */
+  pointer-events: none;
+}
+
+.hero-center-curtis {
+  position: relative;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 70px rgba(0, 0, 0, 0.72));
+}
+
+.hero-center-logo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: clamp(260px, 45vw, 820px);
+  height: auto;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.55));
 }
