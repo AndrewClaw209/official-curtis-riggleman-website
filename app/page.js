@@ -219,7 +219,7 @@ export default function Home() {
             </h1>
             <div className="hero-center-art" aria-hidden="true">
               <Image
-                src="/assets/cutouts/curtis-hero-uploaded.png"
+                src="/assets/cutouts/curtis-center-user-upload.png"
                 alt="Curtis Riggleman"
                 width={1366}
                 height={2048}
