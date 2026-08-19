@@ -138,10 +138,10 @@ export default function MediaPage() {
 
             <a href="/#top" aria-label="Back to homepage">
               <Image
-                src="/assets/logo-curtis-primary-hd.png"
+                src="/assets/logo-curtis-transparent.png"
                 alt="Official Curtis Riggleman logo"
-                width={2400}
-                height={1061}
+                width={1024}
+                height={1024}
                 className="hero-logo"
                 priority
               />
@@ -267,10 +267,10 @@ export default function MediaPage() {
 
       <footer className="footer">
         <Image
-          src="/assets/logo-curtis-primary-hd.png"
+          src="/assets/logo-curtis-transparent.png"
           alt="Official Curtis Riggleman logo"
-          width={2400}
-          height={1061}
+          width={1024}
+          height={1024}
           className="footer-logo"
         />
         <p>Official Curtis Riggleman</p>
