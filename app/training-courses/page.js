@@ -15,7 +15,7 @@ export default function TrainingCoursesPage() {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10.8 9-7.3 9 7.3v9.2a1 1 0 0 1-1 1h-5.2v-6.4H9.2V21H4a1 1 0 0 1-1-1v-9.2Z" /></svg>
         </Link>
         <Link href="/#top" aria-label="Back to homepage">
-          <Image src="/assets/logo-curtis-primary-hd.png" alt="Official Curtis Riggleman" width={2400} height={1061} className="training-logo" priority />
+          <Image src="/assets/logo-curtis-transparent.png" alt="Official Curtis Riggleman" width={1024} height={1024} className="training-logo" priority />
         </Link>
       </header>
 

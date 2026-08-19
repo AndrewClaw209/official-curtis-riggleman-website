@@ -23,7 +23,7 @@ export default function BookDetail({ book }) {
     <main className="book-detail-page">
       <header className="detail-header">
         <Link className="home-button" href="/training-courses" aria-label="Back to training courses"><span aria-hidden="true">←</span></Link>
-        <Link href="/#top" aria-label="Homepage"><Image src="/assets/logo-curtis-primary-hd.png" alt="Official Curtis Riggleman" width={2400} height={1061} className="training-logo" priority /></Link>
+        <Link href="/#top" aria-label="Homepage"><Image src="/assets/logo-curtis-transparent.png" alt="Official Curtis Riggleman" width={1024} height={1024} className="training-logo" priority /></Link>
       </header>
       <section className="detail-hero">
         <p className="kicker">Curtis Riggleman Training</p>
