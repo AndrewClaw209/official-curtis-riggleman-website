@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useRef } from "react";
 import Image from "next/image";
+import RevealOnScroll from "../components/RevealOnScroll";
 
 const socialLinks = [
   {
@@ -27,11 +27,11 @@ const socialLinks = [
 ];
 
 const topTabs = [
-  { label: "Merch Store", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Events", href: "#offers" },
-  { label: "Programs", href: "#offers" },
-  { label: "Sales Coaching", href: "#book-call" },
+  { label: "Training Courses", href: "#top" },
+  { label: "Testimonies", href: "#about" },
+  { label: "Merch", href: "#offers" },
+  { label: "Sales", href: "#offers" },
+  { label: "Coaching", href: "#book-call" },
   { label: "Media", href: "/media" }
 ];
 
@@ -80,69 +80,6 @@ const youtubeChannelUrl = "https://www.youtube.com/@OfficialCurtisRiggleman";
 const featuredMediaVideoUrl = "https://www.youtube.com/watch?v=d9vqxQWuzSs";
 const featuredMediaVideoThumb = "https://img.youtube.com/vi/d9vqxQWuzSs/maxresdefault.jpg";
 
-function CursorPushText({ text, className = "hero-push-line" }) {
-  const charsRef = useRef([]);
-  const pushRadius = 160;
-  const maxPush = 18;
-
-  const resetPush = useCallback(() => {
-    charsRef.current.forEach((char) => {
-      if (!char) return;
-      char.style.setProperty("--push-x", "0px");
-      char.style.setProperty("--push-y", "0px");
-    });
-  }, []);
-
-  const onPointerMove = useCallback((event) => {
-    const cursorX = event.clientX;
-    const cursorY = event.clientY;
-
-    charsRef.current.forEach((char) => {
-      if (!char) return;
-
-      const rect = char.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const dx = centerX - cursorX;
-      const dy = centerY - cursorY;
-      const distance = Math.hypot(dx, dy);
-
-      if (distance > pushRadius) {
-        char.style.setProperty("--push-x", "0px");
-        char.style.setProperty("--push-y", "0px");
-        return;
-      }
-
-      const normalizedDistance = distance / pushRadius;
-      const force = (1 - normalizedDistance) ** 2;
-      const unitX = dx / Math.max(distance, 0.001);
-      const unitY = dy / Math.max(distance, 0.001);
-      const pushX = unitX * force * maxPush;
-      const pushY = unitY * force * maxPush;
-
-      char.style.setProperty("--push-x", `${pushX.toFixed(2)}px`);
-      char.style.setProperty("--push-y", `${pushY.toFixed(2)}px`);
-    });
-  }, []);
-
-  return (
-    <span className={className} aria-label={text} onMouseMove={onPointerMove} onMouseLeave={resetPush}>
-      {Array.from(text).map((char, index) => (
-        <span
-          key={`${text}-${index}`}
-          className="hero-push-char"
-          ref={(el) => {
-            charsRef.current[index] = el;
-          }}
-          aria-hidden="true"
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </span>
-  );
-}
-
 function SocialIcon({ type }) {
   switch (type) {
     case "instagram":
@@ -180,44 +117,17 @@ function SocialIcon({ type }) {
 export default function Home() {
   return (
     <>
+      <RevealOnScroll />
       <header className="hero" id="top">
         <div className="hero-shell">
           <a className="home-button" href="#top" aria-label="Home">
-            Home
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m3 10.8 9-7.3 9 7.3v9.2a1 1 0 0 1-1 1h-5.2v-6.4H9.2V21H4a1 1 0 0 1-1-1v-9.2Z" />
+            </svg>
           </a>
 
-          <div className="hero-topbar reveal" aria-label="Primary navigation">
-            <Image
-              src="/assets/logo-curtis-primary-hd.png"
-              alt="Official Curtis Riggleman logo"
-              width={2400}
-              height={1061}
-              className="hero-logo"
-              priority
-            />
-          </div>
-
           <div className="hero-stage reveal">
-            <h1 className="hero-title">
-              <span className="hero-title-stack">
-                <span className="hero-line hero-line-accent">
-                  <CursorPushText text="GET READY" />
-                </span>
-                <span className="hero-line hero-line-subhead">
-                  <CursorPushText text="FOR CHANGE " className="hero-push-line hero-push-line-inline" />
-                  <span className="hero-line-with">
-                    <CursorPushText text="WITH" className="hero-push-line hero-push-line-inline" />
-                  </span>
-                </span>
-                <span className="hero-line hero-line-name">
-                  <CursorPushText text="CURTIS" />
-                </span>
-              </span>
-              <span className="hero-line hero-line-surname">
-                <CursorPushText text="RIGGLEMAN" />
-              </span>
-            </h1>
-            <div className="hero-center-art" aria-hidden="true">
+            <div className="hero-center-art">
               <Image
                 src="/assets/cutouts/curtis-center-user-upload.png"
                 alt="Curtis Riggleman"
@@ -227,42 +137,14 @@ export default function Home() {
                 priority
               />
               <Image
-                src="/assets/cutouts/curtis-logo-across.png"
-                alt=""
+                src="/assets/logo-curtis-across.png"
+                alt="Official Curtis Riggleman"
                 width={1024}
                 height={1024}
-                className="hero-center-logo"
+                className="hero-center-logo-across"
+                priority
               />
             </div>
-          </div>
-
-          <div className="hero-cta-row reveal">
-            <a
-              className="btn btn-gold"
-              href={hasCalendar ? ghlCalendarUrl : "#"}
-              target={hasCalendar ? "_blank" : undefined}
-              rel={hasCalendar ? "noreferrer" : undefined}
-              onClick={(e) => {
-                if (hasCalendar) return;
-                e.preventDefault();
-                window.alert("Calendar is not configured yet. Set NEXT_PUBLIC_GHL_CALENDAR_URL.");
-              }}
-            >
-              Book Strategy Call
-            </a>
-            <a
-              className="btn btn-outline"
-              href={hasForm ? ghlFormUrl : "#"}
-              target={hasForm ? "_blank" : undefined}
-              rel={hasForm ? "noreferrer" : undefined}
-              onClick={(e) => {
-                if (hasForm) return;
-                e.preventDefault();
-                window.alert("Lead form is not configured yet. Set NEXT_PUBLIC_GHL_FORM_URL.");
-              }}
-            >
-              Apply For Coaching
-            </a>
           </div>
 
           <div className="bottom-tabs" aria-label="Primary navigation">

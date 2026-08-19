@@ -121,6 +121,12 @@ export default function MediaPage() {
     <>
       <header className="media-page-header" id="top">
         <div className="media-header-shell">
+          <a className="home-button media-home-button" href="/#top" aria-label="Home">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m3 10.8 9-7.3 9 7.3v9.2a1 1 0 0 1-1 1h-5.2v-6.4H9.2V21H4a1 1 0 0 1-1-1v-9.2Z" />
+            </svg>
+          </a>
+
           <div className="hero-topbar media-topbar" aria-label="Primary navigation">
             <nav className="hero-nav hero-nav-left">
               {leftTabs.map((tab) => (
