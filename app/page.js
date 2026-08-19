@@ -27,7 +27,7 @@ const socialLinks = [
 ];
 
 const topTabs = [
-  { label: "Training Courses", href: "#top" },
+  { label: "Training Courses", href: "/training-courses" },
   { label: "Testimonies", href: "#about" },
   { label: "Merch", href: "#offers" },
   { label: "Sales", href: "#offers" },
