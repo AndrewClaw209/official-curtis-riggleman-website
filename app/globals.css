@@ -19,15 +19,12 @@ body {
   background: radial-gradient(circle at 50% 35%, #1a2230 0%, #0a0d12 66%);
   color: var(--text-soft);
   overflow-x: hidden;
-  overscroll-behavior: none;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
 }
 
 html {
   background: #0a0d12;
-}
-
-body:has(.hero-shell) {
-  overflow: hidden;
 }
 
 body::before {
