@@ -28,13 +28,12 @@ export default function TrainingCoursesPage() {
       <section className="book-grid" aria-label="Curtis Riggleman books">
         {books.map((book) => (
           <article className="book-card" key={book.slug}>
-            <div className="book-cover-wrap"><Image src={book.image} alt={`${book.title} book cover`} width={1390} height={2218} className="book-cover" /></div>
             <div className="book-card-content">
-              <p className="book-number">BOOK {String(books.indexOf(book) + 1).padStart(2, "0")}</p>
               <h2>{book.title}</h2>
               <p>{book.description}</p>
               <Link className="btn btn-gold" href={`/training-courses/${book.slug}`}>Learn More <span aria-hidden="true">→</span></Link>
             </div>
+            <div className="book-cover-wrap"><Image src={book.image} alt={`${book.title} book cover`} width={1390} height={2218} className="book-cover" /></div>
           </article>
         ))}
       </section>
