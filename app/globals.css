@@ -317,14 +317,15 @@ body:has(.book-detail-page) {
 body:has(.training-page)::before,
 body:has(.book-detail-page)::before { background: linear-gradient(180deg, rgba(8, 11, 16, 0.05), rgba(8, 11, 16, 0.72)); }
 
-.training-page, .book-detail-page { position: relative; z-index: 1; min-height: 100vh; padding: 1.2rem clamp(1rem, 5vw, 5rem) 3rem; }
-.training-header, .detail-header { position: relative; display: flex; justify-content: center; align-items: center; padding-bottom: 2rem; }
-.training-logo { width: min(250px, 52vw); height: auto; filter: drop-shadow(0 12px 28px rgba(0,0,0,.5)); }
-.training-intro { width: min(800px, 100%); margin: 2rem auto 4rem; text-align: center; }
-.training-intro h1, .detail-hero h1 { margin: .45rem 0 1rem; font-family: "Anton", sans-serif; text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.8rem, 7vw, 6.8rem); line-height: .95; color: var(--text-soft); }
+.training-page, .book-detail-page { position: relative; z-index: 1; min-height: 100vh; padding: 1rem clamp(1rem, 5vw, 5rem) 3rem; }
+.training-header, .detail-header { position: relative; display: flex; justify-content: flex-start; align-items: center; gap: .65rem; padding-bottom: .8rem; }
+.training-header .home-button, .detail-header .home-button { position: static; flex: 0 0 auto; }
+.training-logo { width: min(112px, 24vw); height: auto; filter: drop-shadow(0 12px 28px rgba(0,0,0,.5)); }
+.training-intro { width: min(720px, 100%); margin: .8rem auto 2.6rem; text-align: center; }
+.training-intro h1, .detail-hero h1 { margin: .35rem 0 .7rem; font-family: "Anton", sans-serif; text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.25rem, 5vw, 4.8rem); line-height: .95; color: var(--text-soft); }
 .training-intro h1 span { color: var(--gold-strong); }
 .training-intro > p:last-child, .detail-lede { max-width: 650px; margin: 0 auto; color: #d8d5ca; line-height: 1.75; }
-.book-grid { width: min(1080px, 100%); margin: 0 auto; display: grid; gap: clamp(3rem, 8vw, 7rem); }
+.book-grid { width: min(1160px, 100%); margin: 0 auto; display: grid; gap: clamp(3.5rem, 7vw, 6.5rem); }
 .book-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 30%); gap: clamp(2rem, 7vw, 7rem); align-items: center; }
 .book-cover-wrap { display: flex; align-items: center; justify-content: center; min-height: 300px; overflow: hidden; }
 .book-cover { width: 100%; height: 100%; max-height: 390px; object-fit: contain; transition: transform .35s ease; }
@@ -359,6 +360,10 @@ body.book-modal-open { overflow: hidden; }
 }
 @media (max-width: 560px) {
   .training-page, .book-detail-page { padding-inline: .7rem; }
+  .training-header, .detail-header { gap: .45rem; padding-bottom: .45rem; }
+  .training-logo { width: 88px; }
+  .training-intro { margin-top: .55rem; margin-bottom: 2rem; }
+  .training-intro > p:last-child { font-size: .86rem; line-height: 1.55; }
   .book-grid { gap: 3.5rem; }
   .book-card { grid-template-columns: minmax(0, 1fr) 100px; gap: .9rem; }
   .book-cover-wrap { min-height: 210px; }
