@@ -321,14 +321,17 @@ body:has(.book-detail-page)::before { background: linear-gradient(180deg, rgba(8
 .training-header, .detail-header { position: relative; display: flex; justify-content: flex-start; align-items: center; gap: .65rem; padding-bottom: .8rem; }
 .training-header .home-button, .detail-header .home-button { position: static; flex: 0 0 auto; }
 .training-logo { width: min(112px, 24vw); height: auto; filter: drop-shadow(0 12px 28px rgba(0,0,0,.5)); }
+.training-header .training-logo { width: min(128px, 27vw); }
 .training-intro { width: min(720px, 100%); margin: .8rem auto 2.6rem; text-align: center; }
-.training-intro h1, .detail-hero h1 { margin: .35rem 0 .7rem; font-family: "Anton", sans-serif; text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.25rem, 5vw, 4.8rem); line-height: .95; color: var(--text-soft); }
+.training-intro h1, .detail-hero h1 { margin: .35rem 0 .7rem; font-family: "Anton", sans-serif; text-transform: uppercase; letter-spacing: .02em; line-height: .95; color: var(--text-soft); }
+.training-intro h1 { font-size: clamp(2rem, 4vw, 3.8rem); }
+.detail-hero h1 { font-size: clamp(2.25rem, 5vw, 4.8rem); }
 .training-intro h1 span { color: var(--gold-strong); }
 .training-intro > p:last-child, .detail-lede { max-width: 650px; margin: 0 auto; color: #d8d5ca; line-height: 1.75; }
 .book-grid { width: min(1160px, 100%); margin: 0 auto; display: grid; gap: clamp(3.5rem, 7vw, 6.5rem); }
-.book-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 30%); gap: clamp(2rem, 7vw, 7rem); align-items: center; }
-.book-cover-wrap { display: flex; align-items: center; justify-content: center; min-height: 300px; overflow: hidden; }
-.book-cover { width: 100%; height: 100%; max-height: 390px; object-fit: contain; transition: transform .35s ease; }
+.book-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 25%); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.book-cover-wrap { display: flex; align-items: center; justify-content: center; min-height: 250px; overflow: hidden; }
+.book-cover { width: 100%; height: 100%; max-height: 320px; object-fit: contain; transition: transform .35s ease; }
 .book-card:hover .book-cover { transform: scale(1.035); }
 .book-card-content h2 { margin: .25rem 0 .65rem; color: var(--text-soft); font-family: "Anton", sans-serif; text-transform: uppercase; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1.02; }
 .book-card-content > p { margin: 0 0 1.1rem; color: #cfd0ca; font-size: .9rem; line-height: 1.6; }
@@ -361,12 +364,12 @@ body.book-modal-open { overflow: hidden; }
 @media (max-width: 560px) {
   .training-page, .book-detail-page { padding-inline: .7rem; }
   .training-header, .detail-header { gap: .45rem; padding-bottom: .45rem; }
-  .training-logo { width: 88px; }
+  .training-header .training-logo { width: 96px; }
   .training-intro { margin-top: .55rem; margin-bottom: 2rem; }
   .training-intro > p:last-child { font-size: .86rem; line-height: 1.55; }
   .book-grid { gap: 3.5rem; }
-  .book-card { grid-template-columns: minmax(0, 1fr) 100px; gap: .9rem; }
-  .book-cover-wrap { min-height: 210px; }
+  .book-card { grid-template-columns: minmax(0, 1fr) 88px; gap: .9rem; }
+  .book-cover-wrap { min-height: 180px; }
   .book-card-content h2 { font-size: 1.35rem; }
   .book-card-content > p { font-size: .78rem; line-height: 1.45; }
   .detail-book-summary { grid-template-columns: 120px 1fr; gap: 1.2rem; padding: 1rem; }
