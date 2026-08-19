@@ -310,18 +310,19 @@ body::before {
 
 body:has(.training-page),
 body:has(.book-detail-page) {
-  background: radial-gradient(circle at 50% 0%, #242d3b 0%, #0a0d12 58%);
+  background: #000;
   overflow-x: hidden;
 }
 
 body:has(.training-page)::before,
-body:has(.book-detail-page)::before { background: linear-gradient(180deg, rgba(8, 11, 16, 0.05), rgba(8, 11, 16, 0.72)); }
+body:has(.book-detail-page)::before { background: #000; }
 
 .training-page, .book-detail-page { position: relative; z-index: 1; min-height: 100vh; padding: 0 clamp(1rem, 5vw, 5rem) 3rem; }
 .training-header, .detail-header { position: absolute; top: 0; left: 0; z-index: 3; display: flex; justify-content: flex-start; align-items: flex-start; gap: .65rem; }
-.training-header .home-button, .detail-header .home-button { position: static; flex: 0 0 auto; }
-.training-logo { width: min(256px, 54vw); height: auto; filter: drop-shadow(0 12px 28px rgba(0,0,0,.5)); }
-.training-header .training-logo { width: min(256px, 54vw); }
+.training-header .home-button, .detail-header .home-button { position: absolute; top: clamp(0.8rem, 1.8vw, 1.4rem); left: clamp(0.8rem, 1.8vw, 1.4rem); flex: 0 0 auto; }
+.training-header > a:not(.home-button), .detail-header > a:not(.home-button) { display: block; margin: clamp(0.8rem, 1.8vw, 1.4rem) 0 0 calc(clamp(0.8rem, 1.8vw, 1.4rem) + 3.15rem); line-height: 0; }
+.training-logo { width: min(200px, 42vw); height: auto; filter: drop-shadow(0 12px 28px rgba(0,0,0,.5)); }
+.training-header .training-logo, .detail-header .training-logo { width: min(200px, 42vw); }
 .training-intro { width: min(720px, 100%); margin: 0 auto 2.6rem; padding-top: .35rem; text-align: center; }
 .training-intro h1, .detail-hero h1 { margin: .35rem 0 .7rem; font-family: "Anton", sans-serif; text-transform: uppercase; letter-spacing: .02em; line-height: .95; color: var(--text-soft); }
 .training-intro h1 { font-size: clamp(2rem, 4vw, 3.8rem); }
@@ -331,7 +332,7 @@ body:has(.book-detail-page)::before { background: linear-gradient(180deg, rgba(8
 .book-grid { width: min(1160px, 100%); margin: 0 auto; display: grid; gap: clamp(3.5rem, 7vw, 6.5rem); }
 .book-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 25%); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
 .book-cover-wrap { display: flex; align-items: center; justify-content: center; min-height: 250px; overflow: hidden; }
-.book-cover { width: 100%; height: 100%; max-height: 320px; object-fit: contain; transition: transform .35s ease; }
+.book-cover { width: 100%; height: 100%; max-height: 320px; object-fit: contain; filter: drop-shadow(0 8px 0 rgba(139, 91, 15, .45)) drop-shadow(0 0 18px rgba(242, 205, 127, .5)); transition: transform .35s ease, filter .35s ease; }
 .book-card:hover .book-cover { transform: scale(1.035); }
 .book-card-content h2 { margin: .25rem 0 .65rem; color: var(--text-soft); font-family: "Anton", sans-serif; text-transform: uppercase; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1.02; }
 .book-card-content > p { margin: 0 0 1.1rem; color: #cfd0ca; font-size: .9rem; line-height: 1.6; }
@@ -343,7 +344,7 @@ body:has(.book-detail-page)::before { background: linear-gradient(180deg, rgba(8
 .detail-video { width: 100%; aspect-ratio: 16 / 9; margin: 2.2rem auto 4rem; border: 1px solid rgba(242,205,127,.28); border-radius: 1rem; overflow: hidden; background: #000; box-shadow: 0 25px 70px rgba(0,0,0,.45); }
 .detail-video iframe { width: 100%; height: 100%; border: 0; }
 .detail-book-summary { width: min(800px, 100%); margin: 0 auto 4rem; display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 3rem; padding: 2rem; border-top: 1px solid rgba(242,205,127,.25); border-bottom: 1px solid rgba(242,205,127,.25); }
-.detail-cover { width: 100%; height: auto; max-height: 340px; object-fit: contain; }
+.detail-cover { width: 100%; height: auto; max-height: 340px; object-fit: contain; filter: drop-shadow(0 8px 0 rgba(139, 91, 15, .45)) drop-shadow(0 0 18px rgba(242, 205, 127, .5)); }
 .detail-book-summary h2 { margin: .4rem 0 .8rem; font-family: "Anton", sans-serif; text-transform: uppercase; color: var(--text-soft); }
 .detail-book-summary p:not(.kicker) { color: #d8d5ca; line-height: 1.75; }
 .book-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; }
@@ -364,7 +365,7 @@ body.book-modal-open { overflow: hidden; }
 @media (max-width: 560px) {
   .training-page, .book-detail-page { padding-inline: .7rem; }
   .training-header, .detail-header { gap: .45rem; padding-bottom: .45rem; }
-  .training-header .training-logo { width: min(192px, 54vw); }
+  .training-header .training-logo, .detail-header .training-logo { width: min(150px, 38vw); }
   .training-intro { margin-bottom: 2rem; }
   .training-intro > p:last-child { font-size: .86rem; line-height: 1.55; }
   .book-grid { gap: 3.5rem; }
