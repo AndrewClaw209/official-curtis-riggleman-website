@@ -94,7 +94,6 @@ export default function TestimoniesPage() {
       <section className="testimonies-list" aria-label="Curtis Riggleman testimonials">
         {stories.map((story, index) => (
           <article className="testimony-card" key={`${story.name}-${index}`}>
-            <div className="testimony-quote-mark" aria-hidden="true">“</div>
             <blockquote>{story.quote}</blockquote>
             <div className="testimony-author">
               <div className="testimony-avatar">
