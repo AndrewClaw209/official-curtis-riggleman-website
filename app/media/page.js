@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const youtubeChannelUrl = "https://www.youtube.com/@OfficialCurtisRiggleman";
 const featuredMediaVideoUrl = "https://www.youtube.com/watch?v=d9vqxQWuzSs";
@@ -27,22 +27,46 @@ function getShortEmbedUrl(videoId) {
 export default function MediaPage() {
   const [activeShort, setActiveShort] = useState(0);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [visibleShorts, setVisibleShorts] = useState(5);
+  const carouselViewportRef = useRef(null);
+
+  const maxShortIndex = shortsVideoIds.length - visibleShorts;
+
+  useEffect(() => {
+    const updateVisibleShorts = () => {
+      const nextVisibleShorts = window.innerWidth <= 700 ? 2 : window.innerWidth <= 1000 ? 3 : 5;
+      setVisibleShorts(nextVisibleShorts);
+      setActiveShort((current) => Math.min(current, shortsVideoIds.length - nextVisibleShorts));
+    };
+
+    updateVisibleShorts();
+    window.addEventListener("resize", updateVisibleShorts);
+    return () => window.removeEventListener("resize", updateVisibleShorts);
+  }, []);
+
+  useEffect(() => {
+    const viewport = carouselViewportRef.current;
+    const card = viewport?.querySelectorAll(".media-short-video-shell")[activeShort];
+    if (!viewport || !card) return;
+
+    viewport.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+  }, [activeShort, visibleShorts]);
 
   const showPrevious = () => {
-    setActiveShort((current) => (current - 1 + shortsVideoIds.length) % shortsVideoIds.length);
+    setActiveShort((current) => current <= 0 ? maxShortIndex : current - 1);
   };
 
   const showNext = () => {
-    setActiveShort((current) => (current + 1) % shortsVideoIds.length);
+    setActiveShort((current) => current >= maxShortIndex ? 0 : current + 1);
   };
 
   useEffect(() => {
     const carouselTimer = window.setInterval(() => {
-      setActiveShort((current) => (current + 1) % shortsVideoIds.length);
+      setActiveShort((current) => current >= maxShortIndex ? 0 : current + 1);
     }, 6500);
 
     return () => window.clearInterval(carouselTimer);
-  }, []);
+  }, [maxShortIndex]);
 
   useEffect(() => {
     if (!isBookingModalOpen) return undefined;
@@ -95,23 +119,32 @@ export default function MediaPage() {
             </a>
           </div>
 
-          <div className="media-carousel" aria-roledescription="carousel" aria-label="Curtis shorts carousel">
+          <div
+            className="media-carousel"
+            aria-roledescription="carousel"
+            aria-label="Curtis shorts carousel"
+          >
             <button type="button" className="media-carousel-arrow" onClick={showPrevious} aria-label="Previous short">
               <span aria-hidden="true">&#8592;</span>
             </button>
             <div className="media-carousel-stage">
-              <div className="media-short-video-shell">
-                <iframe
-                  key={shortsVideoIds[activeShort]}
-                  src={getShortEmbedUrl(shortsVideoIds[activeShort])}
-                  title={`Curtis Riggleman short ${activeShort + 1}`}
-                  allow="autoplay; encrypted-media; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
+              <div className="media-carousel-viewport" ref={carouselViewportRef}>
+                <div className="media-carousel-track">
+                  {shortsVideoIds.map((videoId, index) => (
+                    <div className={`media-short-video-shell${activeShort === index ? " is-active" : ""}`} key={videoId}>
+                      <iframe
+                        src={getShortEmbedUrl(videoId)}
+                        title={`Curtis Riggleman short ${index + 1}`}
+                        allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
               <p className="media-carousel-count">
-                {String(activeShort + 1).padStart(2, "0")} <span>/</span> {String(shortsVideoIds.length).padStart(2, "0")}
+                Showing {String(activeShort + 1).padStart(2, "0")}–{String(Math.min(activeShort + visibleShorts, shortsVideoIds.length)).padStart(2, "0")} <span>/</span> {String(shortsVideoIds.length).padStart(2, "0")}
               </p>
             </div>
             <button type="button" className="media-carousel-arrow" onClick={showNext} aria-label="Next short">
@@ -119,15 +152,15 @@ export default function MediaPage() {
             </button>
           </div>
 
-          <div className="media-carousel-dots" role="tablist" aria-label="Choose a short">
-            {shortsVideoIds.map((videoId, index) => (
+          <div className="media-carousel-dots" role="tablist" aria-label="Choose a short group">
+            {Array.from({ length: maxShortIndex + 1 }, (_, index) => (
               <button
                 type="button"
                 role="tab"
                 aria-selected={activeShort === index}
-                aria-label={`Play short ${index + 1}`}
+                aria-label={`Show shorts ${index + 1} through ${Math.min(index + visibleShorts, shortsVideoIds.length)}`}
                 className={`media-carousel-dot${activeShort === index ? " is-active" : ""}`}
-                key={videoId}
+                key={index}
                 onClick={() => setActiveShort(index)}
               />
             ))}
