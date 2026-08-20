@@ -386,7 +386,7 @@ body:has(.sales-coaching-page)::before { background: #000; }
 
 .sales-coaching-header {
   position: relative;
-  height: clamp(4.5rem, 10vw, 7rem);
+  height: 2.5rem;
 }
 
 .sales-coaching-hero,
@@ -398,7 +398,7 @@ body:has(.sales-coaching-page)::before { background: #000; }
 }
 
 .sales-coaching-hero {
-  padding: clamp(1rem, 3vw, 2.5rem) 0 4rem;
+  padding: 0 0 4rem;
 }
 
 .sales-coaching-hero h1,
