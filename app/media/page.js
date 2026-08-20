@@ -95,6 +95,12 @@ export default function MediaPage() {
           </svg>
         </a>
 
+        <img
+          className="media-top-logo"
+          src="/assets/logo-curtis-transparent.png"
+          alt="Official Curtis Riggleman"
+        />
+
         <section className="media-hero" aria-labelledby="media-title">
           <div className="media-hero-content">
             <p className="kicker">Curtis Riggleman Media</p>

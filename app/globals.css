@@ -781,6 +781,14 @@ body.book-modal-open { overflow: hidden; }
   left: clamp(0.8rem, 1.8vw, 1.4rem);
 }
 
+.media-top-logo {
+  display: block;
+  width: clamp(150px, 22vw, 250px);
+  height: auto;
+  margin: 0 auto clamp(0.25rem, 1vw, 0.7rem);
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.45));
+}
+
 .media-hero {
   padding: clamp(1rem, 3vw, 2rem) 0 clamp(1.4rem, 3vw, 2.4rem);
   text-align: center;
