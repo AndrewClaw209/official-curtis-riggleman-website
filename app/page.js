@@ -30,8 +30,7 @@ const topTabs = [
   { label: "Training Courses", href: "/training-courses" },
   { label: "Testimonies", href: "/testimonies" },
   { label: "Merch", href: "#offers" },
-  { label: "Sales", href: "#offers" },
-  { label: "Coaching", href: "#book-call" },
+  { label: "Sales Coaching", href: "/sales-coaching" },
   { label: "Media", href: "/media" }
 ];
 

@@ -310,14 +310,16 @@ body::before {
 
 body:has(.training-page),
 body:has(.book-detail-page),
-body:has(.testimonies-page) {
+body:has(.testimonies-page),
+body:has(.sales-coaching-page) {
   background: #000;
   overflow-x: hidden;
 }
 
 body:has(.training-page)::before,
 body:has(.book-detail-page)::before,
-body:has(.testimonies-page)::before { background: #000; }
+body:has(.testimonies-page)::before,
+body:has(.sales-coaching-page)::before { background: #000; }
 
 .site-footer {
   position: relative;
@@ -372,6 +374,112 @@ body:has(.testimonies-page)::before { background: #000; }
   min-height: 100vh;
   padding: 0 clamp(1rem, 5vw, 5rem) 5rem;
   background: #000;
+}
+
+.sales-coaching-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 0 clamp(1rem, 5vw, 5rem) 5rem;
+  background: #000;
+}
+
+.sales-coaching-header {
+  position: relative;
+  height: clamp(4.5rem, 10vw, 7rem);
+}
+
+.sales-coaching-hero,
+.sales-coaching-about,
+.sales-coaching-signup {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sales-coaching-hero {
+  padding: clamp(1rem, 3vw, 2.5rem) 0 4rem;
+}
+
+.sales-coaching-hero h1,
+.sales-coaching-about h2,
+.sales-coaching-signup h2 {
+  margin: .35rem 0 .9rem;
+  color: #fff7df;
+  font-family: "Anton", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  line-height: .95;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.sales-coaching-lede,
+.sales-coaching-about > p:last-child,
+.sales-coaching-signup > p:not(.kicker) {
+  max-width: 720px;
+  margin: 0 auto;
+  color: rgba(247, 242, 229, .76);
+  font-size: clamp(.95rem, 1.6vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.sales-coaching-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(242, 205, 127, .3);
+  border-radius: 1rem;
+  background: #000;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
+}
+
+.sales-coaching-video iframe,
+.sales-coaching-form {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.sales-coaching-about {
+  max-width: 820px;
+  padding: 1rem 0 5rem;
+}
+
+.sales-coaching-about h2,
+.sales-coaching-signup h2 {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+}
+
+.sales-coaching-signup {
+  max-width: 760px;
+  padding: 2.5rem 0 1rem;
+  border-top: 1px solid rgba(242, 205, 127, .22);
+}
+
+.sales-coaching-form {
+  min-height: 560px;
+  margin-top: 1.75rem;
+  background: #fff;
+}
+
+.sales-coaching-form-placeholder {
+  margin-top: 1.75rem;
+  padding: 2rem 1.25rem;
+  border: 1px dashed rgba(242, 205, 127, .5);
+  color: #d8d5ca;
+}
+
+.sales-coaching-form-placeholder p {
+  margin: 0 0 .45rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.sales-coaching-form-placeholder small {
+  color: #aaa59a;
+  line-height: 1.5;
 }
 
 .testimonies-header {
