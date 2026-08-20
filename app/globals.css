@@ -370,8 +370,8 @@ body:has(.testimonies-page)::before { background: #000; }
   min-height: 250px;
   padding: clamp(1rem, 1.8vw, 1.5rem);
   border: 0;
-  border-radius: 0.75rem;
-  background: linear-gradient(145deg, rgba(28, 28, 28, 0.96), rgba(7, 7, 7, 0.98));
+  border-radius: 0;
+  background: transparent;
   box-shadow: none;
 }
 
