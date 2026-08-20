@@ -108,7 +108,6 @@ export default function MediaPage() {
 
         <section className="media-hero" aria-labelledby="media-title">
           <div className="media-hero-content">
-            <p className="kicker">Curtis Riggleman Media</p>
             <h1 id="media-title">Watch Curtis In Action</h1>
             <p>Sales leadership, dealership training, and straight-to-the-point lessons from the showroom floor.</p>
             <div className="media-hero-cta">
