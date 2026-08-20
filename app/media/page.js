@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const youtubeChannelUrl = "https://www.youtube.com/@OfficialCurtisRiggleman";
 const featuredMediaVideoUrl = "https://www.youtube.com/watch?v=d9vqxQWuzSs";
 const featuredMediaVideoEmbedUrl = "https://www.youtube.com/embed/d9vqxQWuzSs?rel=0";
+const ghlPublicAppearanceFormUrl = process.env.NEXT_PUBLIC_GHL_PUBLIC_APPEARANCE_FORM_URL;
 const shortsVideoIds = [
   "-3NURmSXqN8",
   "0O3PIhYK_Bs",
@@ -28,7 +29,13 @@ const loopingShorts = [...shortsVideoIds, ...shortsVideoIds];
 
 export default function MediaPage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isAppearanceModalOpen, setIsAppearanceModalOpen] = useState(false);
   const carouselViewportRef = useRef(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsAppearanceModalOpen(true), 20000);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const viewport = carouselViewportRef.current;
@@ -91,6 +98,21 @@ export default function MediaPage() {
     };
   }, [isBookingModalOpen]);
 
+  useEffect(() => {
+    if (!isAppearanceModalOpen) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setIsAppearanceModalOpen(false);
+    };
+
+    document.body.classList.add("media-modal-open");
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.classList.remove("media-modal-open");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isAppearanceModalOpen]);
+
   return (
     <>
       <main className="media-page-main">
@@ -142,10 +164,6 @@ export default function MediaPage() {
         </section>
 
         <section className="media-feature" aria-labelledby="featured-title">
-          <div className="media-section-heading">
-            <p className="kicker">Featured</p>
-            <h2 id="featured-title">The Curtis Riggleman Show</h2>
-          </div>
           <div className="media-feature-video-shell">
             <iframe
               src={featuredMediaVideoEmbedUrl}
@@ -183,6 +201,45 @@ export default function MediaPage() {
               <div className="placeholder-fields"><div>Name</div><div>Email</div><div>Podcast Name</div><div>Preferred Recording Date</div></div>
               <button type="button" className="btn btn-gold placeholder-submit">Submit Booking Request</button>
             </div>
+          </div>
+        </div>
+      ) : null}
+
+      {isAppearanceModalOpen ? (
+        <div className="media-appearance-modal" role="dialog" aria-modal="true" aria-labelledby="appearance-modal-title">
+          <button
+            className="media-appearance-modal-backdrop"
+            type="button"
+            aria-label="Close public appearance form"
+            onClick={() => setIsAppearanceModalOpen(false)}
+          />
+          <div className="media-appearance-modal-panel">
+            <button
+              type="button"
+              className="media-appearance-modal-close"
+              onClick={() => setIsAppearanceModalOpen(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <p className="kicker">Bring Curtis To Your Event</p>
+            <h2 id="appearance-modal-title">Want Curtis to speak at your next event?</h2>
+            <p>
+              Curtis brings real dealership experience, practical sales training, and a winning mindset to every room. Reach out to invite him to your dealership, conference, or public appearance.
+            </p>
+            {ghlPublicAppearanceFormUrl ? (
+              <iframe
+                className="media-appearance-form"
+                src={ghlPublicAppearanceFormUrl}
+                title="Request a public appearance with Curtis Riggleman"
+                loading="lazy"
+              />
+            ) : (
+              <div className="media-appearance-form-placeholder">
+                <p>Public appearance request form coming soon.</p>
+                <small>Add the form URL as NEXT_PUBLIC_GHL_PUBLIC_APPEARANCE_FORM_URL to activate the GHL form.</small>
+              </div>
+            )}
           </div>
         </div>
       ) : null}
