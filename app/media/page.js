@@ -265,17 +265,6 @@ export default function MediaPage() {
         </div>
       ) : null}
 
-      <footer className="footer">
-        <Image
-          src="/assets/logo-curtis-transparent.png"
-          alt="Official Curtis Riggleman logo"
-          width={1024}
-          height={1024}
-          className="footer-logo"
-        />
-        <p>Official Curtis Riggleman</p>
-        <p>Built by AWEVO Software Solutions</p>
-      </footer>
     </>
   );
 }

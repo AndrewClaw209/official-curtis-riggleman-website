@@ -1,6 +1,7 @@
 import { Anton, Manrope } from "next/font/google";
 import "./globals.css";
 import "../styles.css";
+import SiteFooter from "../components/SiteFooter";
 
 const anton = Anton({
   variable: "--font-anton",
@@ -23,7 +24,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${anton.variable} ${manrope.variable}`}>{children}</body>
+      <body className={`${anton.variable} ${manrope.variable}`}>
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

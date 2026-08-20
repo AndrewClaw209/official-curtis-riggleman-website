@@ -37,7 +37,6 @@ export default function TrainingCoursesPage() {
         ))}
       </section>
 
-      <footer className="footer training-footer">Official Curtis Riggleman · Built by AWEVO Software Solutions</footer>
     </main>
   );
 }

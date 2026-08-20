@@ -319,6 +319,53 @@ body:has(.training-page)::before,
 body:has(.book-detail-page)::before,
 body:has(.testimonies-page)::before { background: #000; }
 
+.site-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 210px;
+  padding: 2.5rem 1rem calc(2.5rem + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(242, 205, 127, 0.2);
+  background: #000;
+  text-align: center;
+}
+
+.site-footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.site-footer-logo {
+  width: clamp(110px, 14vw, 170px);
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+}
+
+.site-footer-name,
+.site-footer-credit {
+  margin: 0;
+}
+
+.site-footer-name {
+  color: #fff7df;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-footer-credit {
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .testimonies-page {
   position: relative;
   z-index: 1;
@@ -424,7 +471,6 @@ body:has(.testimonies-page)::before { background: #000; }
 .book-card-content h2 { margin: .25rem 0 .65rem; color: var(--text-soft); font-family: "Anton", sans-serif; text-transform: uppercase; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1.02; }
 .book-card-content > p { margin: 0 0 1.1rem; color: #cfd0ca; font-size: .9rem; line-height: 1.6; }
 .book-card .btn, .detail-book-summary .btn { padding: .72rem 1rem; font-size: .7rem; }
-.training-footer { margin-top: 4rem; border-top: 1px solid rgba(242,205,127,.15); }
 .detail-header { margin-bottom: 1rem; }
 .detail-header .home-button { font-size: 1.5rem; }
 .detail-hero { width: min(980px, 100%); margin: 0 auto; text-align: center; }
