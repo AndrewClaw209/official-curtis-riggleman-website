@@ -309,13 +309,110 @@ body::before {
 }
 
 body:has(.training-page),
-body:has(.book-detail-page) {
+body:has(.book-detail-page),
+body:has(.testimonies-page) {
   background: #000;
   overflow-x: hidden;
 }
 
 body:has(.training-page)::before,
-body:has(.book-detail-page)::before { background: #000; }
+body:has(.book-detail-page)::before,
+body:has(.testimonies-page)::before { background: #000; }
+
+.testimonies-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 0 clamp(1rem, 5vw, 5rem) 5rem;
+  background: #000;
+}
+
+.testimonies-header {
+  position: relative;
+  height: clamp(4.5rem, 10vw, 7rem);
+}
+
+.testimonies-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem) 0 clamp(2.5rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.testimonies-hero h1 {
+  margin: 0.2rem 0 1rem;
+  font-family: "Anton", sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff7df;
+}
+
+.testimonies-hero > p:last-child {
+  max-width: 650px;
+  margin: 0 auto;
+  color: rgba(247, 242, 229, 0.72);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.testimonies-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.testimony-card {
+  position: relative;
+  min-height: 330px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(242, 205, 127, 0.25);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgba(28, 28, 28, 0.96), rgba(7, 7, 7, 0.98));
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 247, 223, 0.04);
+}
+
+.testimony-quote-mark {
+  height: 2.2rem;
+  color: var(--gold-strong);
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 0.8;
+}
+
+.testimony-card blockquote {
+  margin: 0.4rem 0 2rem;
+  color: rgba(247, 242, 229, 0.88);
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.75;
+}
+
+.testimony-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.testimony-avatar {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: 0 0 3.5rem;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid rgba(242, 205, 127, 0.65);
+  border-radius: 50%;
+  background: #191919;
+}
+
+.testimony-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testimony-initials { color: var(--gold); font-family: "Anton", sans-serif; font-size: 1.5rem; }
+.testimony-author strong { display: block; color: #fff7df; font-size: 1rem; }
+.testimony-author span { display: block; margin-top: 0.2rem; color: var(--gold); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
 .training-page, .book-detail-page { position: relative; z-index: 1; min-height: 100vh; padding: 0 clamp(1rem, 5vw, 5rem) 3rem; }
 .training-header, .detail-header { position: absolute; top: 0; left: 0; z-index: 3; display: flex; justify-content: flex-start; align-items: flex-start; gap: .65rem; }
@@ -388,6 +485,27 @@ body.book-modal-open { overflow: hidden; }
 }
 
 @media (max-width: 700px) {
+  .testimonies-page {
+    padding-inline: 0.8rem;
+  }
+
+  .testimonies-header {
+    height: 4.8rem;
+  }
+
+  .testimonies-hero {
+    padding-top: 0.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .testimonies-list {
+    grid-template-columns: 1fr;
+  }
+
+  .testimony-card {
+    min-height: 0;
+  }
+
   .hero-shell {
     padding: 0.8rem 0.6rem 4.6rem;
   }
