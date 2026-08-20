@@ -772,7 +772,7 @@ body.book-modal-open { overflow: hidden; }
   z-index: 1;
   width: min(1120px, calc(100vw - 2rem));
   margin: 0 auto;
-  padding: clamp(4.8rem, 8vw, 7rem) 0 4rem;
+  padding: 0 0 4rem;
 }
 
 .media-home-button {
