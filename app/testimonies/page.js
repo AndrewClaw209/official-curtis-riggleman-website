@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const ghlTestimonyFormUrl = process.env.NEXT_PUBLIC_GHL_TESTIMONY_FORM_URL;
 
 const stories = [
   {
@@ -75,6 +80,28 @@ function Initials({ name }) {
 }
 
 export default function TestimoniesPage() {
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsCallModalOpen(true), 20000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isCallModalOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsCallModalOpen(false);
+    };
+
+    document.body.classList.add("testimony-call-modal-open");
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.classList.remove("testimony-call-modal-open");
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isCallModalOpen]);
+
   return (
     <main className="testimonies-page">
       <header className="testimonies-header">
@@ -107,6 +134,45 @@ export default function TestimoniesPage() {
           </article>
         ))}
       </section>
+
+      {isCallModalOpen && (
+        <div className="testimony-call-modal" role="dialog" aria-modal="true" aria-labelledby="testimony-call-title">
+          <button
+            className="testimony-call-modal-backdrop"
+            type="button"
+            aria-label="Close call booking form"
+            onClick={() => setIsCallModalOpen(false)}
+          />
+          <div className="testimony-call-modal-panel">
+            <button
+              className="testimony-call-modal-close"
+              type="button"
+              onClick={() => setIsCallModalOpen(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <p className="kicker">Ready for your next level?</p>
+            <h2 id="testimony-call-title">You&apos;ve seen the proof. Now book a call with Curtis.</h2>
+            <p>
+              The results speak for themselves. Tell us where you want to grow, and sign up to connect with Curtis directly.
+            </p>
+            {ghlTestimonyFormUrl ? (
+              <iframe
+                className="testimony-call-form"
+                src={ghlTestimonyFormUrl}
+                title="Book a call with Curtis Riggleman"
+                loading="lazy"
+              />
+            ) : (
+              <div className="testimony-call-form-placeholder">
+                <p>GHL signup form coming soon.</p>
+                <small>Add the form URL as NEXT_PUBLIC_GHL_TESTIMONY_FORM_URL to activate the signup form.</small>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
