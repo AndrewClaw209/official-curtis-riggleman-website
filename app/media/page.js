@@ -21,8 +21,10 @@ const shortsVideoIds = [
 ];
 
 function getShortEmbedUrl(videoId) {
-  return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1`;
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`;
 }
+
+const loopingShorts = [...shortsVideoIds, ...shortsVideoIds];
 
 export default function MediaPage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -42,8 +44,11 @@ export default function MediaPage() {
 
       if (!isPaused && viewport.scrollWidth > viewport.clientWidth) {
         viewport.scrollLeft += elapsed * 0.035;
-        if (viewport.scrollLeft >= viewport.scrollWidth - viewport.clientWidth - 1) {
-          viewport.scrollLeft = 0;
+        // The second copy follows the first, so moving back by one track width
+        // keeps the carousel moving continuously without a visible reset.
+        const loopPoint = viewport.scrollWidth / 2;
+        if (viewport.scrollLeft >= loopPoint) {
+          viewport.scrollLeft -= loopPoint;
         }
       }
 
@@ -121,8 +126,8 @@ export default function MediaPage() {
           <div className="media-carousel" aria-roledescription="carousel" aria-label="Curtis shorts carousel">
             <div className="media-carousel-viewport" ref={carouselViewportRef}>
               <div className="media-carousel-track">
-                {shortsVideoIds.map((videoId, index) => (
-                  <div className="media-short-video-shell" key={videoId}>
+                {loopingShorts.map((videoId, index) => (
+                  <div className="media-short-video-shell" key={`${videoId}-${index}`}>
                     <iframe
                       src={getShortEmbedUrl(videoId)}
                       title={`Curtis Riggleman short ${index + 1}`}
