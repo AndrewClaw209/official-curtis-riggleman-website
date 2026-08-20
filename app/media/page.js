@@ -24,10 +24,6 @@ function getShortEmbedUrl(videoId) {
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1`;
 }
 
-function getShortThumbUrl(videoId) {
-  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-}
-
 export default function MediaPage() {
   const [activeShort, setActiveShort] = useState(0);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -39,6 +35,14 @@ export default function MediaPage() {
   const showNext = () => {
     setActiveShort((current) => (current + 1) % shortsVideoIds.length);
   };
+
+  useEffect(() => {
+    const carouselTimer = window.setInterval(() => {
+      setActiveShort((current) => (current + 1) % shortsVideoIds.length);
+    }, 6500);
+
+    return () => window.clearInterval(carouselTimer);
+  }, []);
 
   useEffect(() => {
     if (!isBookingModalOpen) return undefined;
@@ -80,23 +84,6 @@ export default function MediaPage() {
           </div>
         </section>
 
-        <section className="media-feature" aria-labelledby="featured-title">
-          <div className="media-section-heading">
-            <p className="kicker">Featured</p>
-            <h2 id="featured-title">The Curtis Riggleman Show</h2>
-          </div>
-          <div className="media-feature-video-shell">
-            <iframe
-              src={featuredMediaVideoEmbedUrl}
-              title="Featured Curtis Riggleman video"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </section>
-
         <section className="media-shorts" aria-labelledby="shorts-title">
           <div className="media-section-heading media-shorts-heading">
             <div>
@@ -104,7 +91,7 @@ export default function MediaPage() {
               <h2 id="shorts-title">Curtis Shorts</h2>
             </div>
             <a className="media-inline-link" href={youtubeChannelUrl} target="_blank" rel="noreferrer">
-              See all on YouTube
+              All shorts on YouTube
             </a>
           </div>
 
@@ -132,21 +119,35 @@ export default function MediaPage() {
             </button>
           </div>
 
-          <div className="media-carousel-thumbs" role="tablist" aria-label="Choose a short">
+          <div className="media-carousel-dots" role="tablist" aria-label="Choose a short">
             {shortsVideoIds.map((videoId, index) => (
               <button
                 type="button"
                 role="tab"
                 aria-selected={activeShort === index}
                 aria-label={`Play short ${index + 1}`}
-                className={`media-carousel-thumb${activeShort === index ? " is-active" : ""}`}
+                className={`media-carousel-dot${activeShort === index ? " is-active" : ""}`}
                 key={videoId}
                 onClick={() => setActiveShort(index)}
-              >
-                <img src={getShortThumbUrl(videoId)} alt="" loading="lazy" />
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </button>
+              />
             ))}
+          </div>
+        </section>
+
+        <section className="media-feature" aria-labelledby="featured-title">
+          <div className="media-section-heading">
+            <p className="kicker">Featured</p>
+            <h2 id="featured-title">The Curtis Riggleman Show</h2>
+          </div>
+          <div className="media-feature-video-shell">
+            <iframe
+              src={featuredMediaVideoEmbedUrl}
+              title="Featured Curtis Riggleman video"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </section>
 
