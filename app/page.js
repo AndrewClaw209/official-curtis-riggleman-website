@@ -146,15 +146,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bottom-tabs" aria-label="Primary navigation">
-            {topTabs.map((tab) => (
-              <a key={tab.label} href={tab.href}>
-                {tab.label}
-              </a>
-            ))}
-          </div>
         </div>
       </header>
+
+      <nav className="bottom-tabs" aria-label="Primary navigation">
+        {topTabs.map((tab) => (
+          <a key={tab.label} href={tab.href}>
+            {tab.label}
+          </a>
+        ))}
+      </nav>
 
       <aside className="sticky-video" aria-label="Featured Curtis video">
         <iframe
