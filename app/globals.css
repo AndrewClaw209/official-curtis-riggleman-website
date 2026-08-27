@@ -700,7 +700,7 @@ body.book-modal-open { overflow: hidden; }
     gap: 0.35rem;
     width: min(100%, 25rem);
     margin-inline: auto;
-    padding: 0.25rem 1rem calc(0.55rem + env(safe-area-inset-bottom));
+    padding: 0.25rem 1.35rem calc(0.55rem + env(safe-area-inset-bottom)) 1rem;
   }
 
   .hero-center-art {
