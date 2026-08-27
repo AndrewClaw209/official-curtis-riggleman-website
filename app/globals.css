@@ -986,6 +986,6 @@ body.book-modal-open { overflow: hidden; }
 
 @media (max-width: 700px) {
   .hero-center-art {
-    height: min(calc(100svh - 5.8rem), 720px);
+    height: min(64svh, 560px);
   }
 }
