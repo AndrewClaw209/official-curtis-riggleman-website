@@ -679,7 +679,7 @@ body.book-modal-open { overflow: hidden; }
 
   .hero-shell {
     min-height: 0;
-    padding: 0.8rem 0.6rem 0.8rem;
+    padding: 0 0.6rem 0.8rem;
   }
 
   .hero-title {
@@ -704,6 +704,7 @@ body.book-modal-open { overflow: hidden; }
 
   .hero-center-art {
     height: min(72svh, 620px);
+    transform: translateY(-8%);
   }
 
   .bottom-tabs a {
