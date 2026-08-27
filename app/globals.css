@@ -271,29 +271,43 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 1.4vw, 1.35rem);
+  gap: clamp(0.35rem, 0.8vw, 0.7rem);
   width: min(1300px, calc(100vw - 1.3rem));
   flex-wrap: wrap;
-  border: 0;
-  background: rgba(4, 6, 10, 0.78);
-  border-radius: 999px;
-  padding: 0.45rem 0.7rem calc(0.45rem + env(safe-area-inset-bottom));
+  padding: 0.35rem 0.45rem calc(0.35rem + env(safe-area-inset-bottom));
   backdrop-filter: blur(6px);
 }
 
 .bottom-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.45rem;
+  padding: 0.65rem clamp(0.8rem, 1.5vw, 1.25rem);
   text-decoration: none;
-  color: #fff7df;
+  color: #17120a;
+  background: linear-gradient(135deg, #f8d993 0%, var(--gold-strong) 100%);
+  border: 1px solid rgba(255, 239, 190, 0.92);
+  border-radius: 999px;
   letter-spacing: 0.08em;
   font-size: clamp(0.66rem, 1vw, 0.78rem);
   text-transform: uppercase;
   font-weight: 700;
   white-space: nowrap;
-  padding: 0.36rem 0.45rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .bottom-tabs a:hover {
-  color: var(--gold);
+  color: #0b0906;
+  background: linear-gradient(135deg, #fff0bd 0%, #efbd5e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 11px 24px rgba(0, 0, 0, 0.38);
+}
+
+.bottom-tabs a:focus-visible {
+  outline: 3px solid #fff7df;
+  outline-offset: 3px;
 }
 
 .sr-only {
@@ -683,11 +697,10 @@ body.book-modal-open { overflow: hidden; }
   }
 
   .bottom-tabs {
-    border-radius: 1rem;
     justify-content: flex-start;
     overflow-x: auto;
     flex-wrap: nowrap;
-    padding-bottom: 0.5rem;
+    padding: 0.35rem 0.25rem calc(0.5rem + env(safe-area-inset-bottom));
   }
 
   .bottom-tabs::-webkit-scrollbar {
@@ -695,7 +708,7 @@ body.book-modal-open { overflow: hidden; }
   }
 
   .bottom-tabs::-webkit-scrollbar-thumb {
-    background: rgba(242, 205, 127, 0.45);
+    background: rgba(242, 205, 127, 0.75);
     border-radius: 999px;
   }
 
