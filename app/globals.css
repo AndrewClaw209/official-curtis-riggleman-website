@@ -698,8 +698,9 @@ body.book-modal-open { overflow: hidden; }
     flex-direction: column;
     align-items: stretch;
     gap: 0.35rem;
-    width: min(100% - 1rem, 25rem);
-    padding: 0.25rem 0.15rem calc(0.55rem + env(safe-area-inset-bottom));
+    width: min(100%, 25rem);
+    margin-inline: auto;
+    padding: 0.25rem 1rem calc(0.55rem + env(safe-area-inset-bottom));
   }
 
   .hero-center-art {
