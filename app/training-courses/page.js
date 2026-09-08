@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { books } from "./books";
+import BookCart from "../../components/BookCart";
 
 export const metadata = {
   title: "Training Courses | Curtis Riggleman",
@@ -28,7 +29,10 @@ export default function TrainingCoursesPage() {
             <div className="book-card-content">
               <h2>{book.title}</h2>
               <p>{book.description}</p>
-              <Link className="btn btn-gold" href={`/training-courses/${book.slug}`}>Learn More <span aria-hidden="true">→</span></Link>
+              <div className="book-card-actions">
+                <Link className="btn btn-gold" href={`/training-courses/${book.slug}`}>Learn More <span aria-hidden="true">→</span></Link>
+                <BookCart book={book} />
+              </div>
             </div>
             <Link className="book-cover-link" href={`/training-courses/${book.slug}`} aria-label={`Learn more about ${book.title}`}>
               <div className="book-cover-wrap"><Image src={book.image} alt={`${book.title} book cover`} width={1390} height={2218} className="book-cover" /></div>
