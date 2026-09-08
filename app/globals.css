@@ -970,6 +970,7 @@ body.book-modal-open { overflow: hidden; }
 .media-appearance-modal-panel h2 { max-width: 16ch; margin: 0.35rem 0 0.7rem; color: var(--gold); font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.05; }
 .media-appearance-modal-panel > p:not(.kicker) { color: rgba(247, 242, 229, 0.78); line-height: 1.6; }
 .media-appearance-form { width: 100%; min-height: 360px; margin-top: 1.3rem; border: 0; background: #151515; }
+.book-copy-form { display: block; width: 100%; margin-top: 1.3rem; border: 0; background: #151515; }
 .media-appearance-form-placeholder { margin-top: 1.3rem; padding: 1.1rem; border: 1px solid rgba(242, 205, 127, 0.2); border-radius: 0.7rem; background: #151515; color: rgba(247, 242, 229, 0.72); }
 .media-appearance-form-placeholder p { margin: 0 0 0.45rem; color: var(--gold); font-weight: 700; }
 .media-appearance-form-placeholder small { color: rgba(247, 242, 229, 0.55); line-height: 1.5; }

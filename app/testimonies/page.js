@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const ghlTestimonyFormUrl = process.env.NEXT_PUBLIC_GHL_TESTIMONY_FORM_URL;
+const ghlTestimonyFormUrl =
+  process.env.NEXT_PUBLIC_GHL_TESTIMONY_FORM_URL ||
+  "https://links.officialcurtisriggleman.com/widget/form/e0r8dW5zvIHuTajFxphX";
 
 const stories = [
   {
@@ -163,6 +165,7 @@ export default function TestimoniesPage() {
                 src={ghlTestimonyFormUrl}
                 title="Book a call with Curtis Riggleman"
                 loading="lazy"
+                style={{ height: "541px" }}
               />
             ) : (
               <div className="testimony-call-form-placeholder">

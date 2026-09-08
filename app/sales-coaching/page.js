@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-const ghlSalesCoachingFormUrl = process.env.NEXT_PUBLIC_GHL_SALES_COACHING_FORM_URL;
+const ghlSalesCoachingFormUrl =
+  process.env.NEXT_PUBLIC_GHL_SALES_COACHING_FORM_URL ||
+  "https://links.officialcurtisriggleman.com/widget/form/ZAA3ACp8Yq2p0LIBZgyL";
 const coachingVideoId = "4gLWpkYZCRo";
 
 const curtisBio =
@@ -49,6 +51,7 @@ export default function SalesCoachingPage() {
             src={ghlSalesCoachingFormUrl}
             title="Sign up for Curtis Riggleman sales coaching"
             loading="lazy"
+            style={{ height: "1184px" }}
           />
         ) : (
           <div className="sales-coaching-form-placeholder">

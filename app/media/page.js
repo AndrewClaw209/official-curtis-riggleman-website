@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from "react";
 const youtubeChannelUrl = "https://www.youtube.com/@OfficialCurtisRiggleman";
 const featuredMediaVideoUrl = "https://www.youtube.com/watch?v=d9vqxQWuzSs";
 const featuredMediaVideoEmbedUrl = "https://www.youtube.com/embed/d9vqxQWuzSs?rel=0";
-const ghlPublicAppearanceFormUrl = process.env.NEXT_PUBLIC_GHL_PUBLIC_APPEARANCE_FORM_URL;
+const ghlPublicAppearanceFormUrl =
+  process.env.NEXT_PUBLIC_GHL_PUBLIC_APPEARANCE_FORM_URL ||
+  "https://links.officialcurtisriggleman.com/widget/form/wOwdQ2PuiljPS4vLGvFW";
 const shortsVideoIds = [
   "-3NURmSXqN8",
   "0O3PIhYK_Bs",
@@ -187,20 +189,22 @@ export default function MediaPage() {
       </main>
 
       {isBookingModalOpen ? (
-        <div className="media-book-modal" role="dialog" aria-modal="true" aria-label="Podcast booking form placeholder">
+        <div className="media-book-modal" role="dialog" aria-modal="true" aria-label="Podcast booking form">
           <div className="media-book-modal-backdrop" onClick={() => setIsBookingModalOpen(false)} />
           <div className="media-book-modal-panel">
             <button type="button" className="media-book-modal-close" onClick={() => setIsBookingModalOpen(false)} aria-label="Close booking form">
               ×
             </button>
             <p className="kicker">Podcast Booking Form</p>
-            <h2>Placeholder Form</h2>
-            <p>This is a temporary modal placeholder until the new GoHighLevel podcast form is ready.</p>
-            <div className="placeholder-shell" role="img" aria-label="Podcast booking form placeholder preview">
-              <div className="placeholder-head"><strong>Podcast Guest Request</strong><span>V1 Preview</span></div>
-              <div className="placeholder-fields"><div>Name</div><div>Email</div><div>Podcast Name</div><div>Preferred Recording Date</div></div>
-              <button type="button" className="btn btn-gold placeholder-submit">Submit Booking Request</button>
-            </div>
+            <h2>Request a Podcast Appearance</h2>
+            <p>Tell us about your show and the conversation you want to have with Curtis.</p>
+            <iframe
+              className="media-appearance-form"
+              src={ghlPublicAppearanceFormUrl}
+              title="Request a podcast appearance with Curtis Riggleman"
+              loading="lazy"
+              style={{ height: "1090px" }}
+            />
           </div>
         </div>
       ) : null}
@@ -233,6 +237,7 @@ export default function MediaPage() {
                 src={ghlPublicAppearanceFormUrl}
                 title="Request a public appearance with Curtis Riggleman"
                 loading="lazy"
+                style={{ height: "1090px" }}
               />
             ) : (
               <div className="media-appearance-form-placeholder">
