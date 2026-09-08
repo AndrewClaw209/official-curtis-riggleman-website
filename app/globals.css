@@ -608,7 +608,7 @@ body.testimony-call-modal-open { overflow: hidden; }
 .detail-header .home-button { font-size: 1.5rem; }
 .detail-hero { width: min(980px, 100%); margin: 0 auto; text-align: center; }
 .detail-video { width: 100%; aspect-ratio: 16 / 9; margin: 2.2rem auto 4rem; border: 1px solid rgba(242,205,127,.28); border-radius: 1rem; overflow: hidden; background: #000; box-shadow: 0 25px 70px rgba(0,0,0,.45); }
-.detail-video iframe { width: 100%; height: 100%; border: 0; }
+.detail-video iframe, .detail-video video { width: 100%; height: 100%; border: 0; display: block; }
 .detail-book-summary { width: min(800px, 100%); margin: 0 auto 4rem; display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 3rem; padding: 2rem; border-top: 1px solid rgba(242,205,127,.25); border-bottom: 1px solid rgba(242,205,127,.25); }
 .detail-cover { width: 100%; height: auto; max-height: 340px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(242, 205, 127, .9)) drop-shadow(0 0 16px rgba(201, 154, 58, .72)) drop-shadow(0 6px 0 rgba(139, 91, 15, .45)); }
 .detail-book-summary h2 { margin: .4rem 0 .8rem; font-family: "Anton", sans-serif; text-transform: uppercase; color: var(--text-soft); }

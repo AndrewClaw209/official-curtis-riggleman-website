@@ -28,7 +28,7 @@ export default function BookDetail({ book }) {
         <p className="kicker">Curtis Riggleman Training</p>
         <h1>{book.title}</h1>
         <p className="detail-lede">Watch Curtis break down the ideas behind this book, then request your copy to be shipped directly to you.</p>
-        <div className="detail-video"><iframe src={`https://www.youtube.com/embed/${book.videoId}?autoplay=1&controls=1&rel=0&playsinline=1`} title={`Curtis Riggleman explains ${book.title}`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
+        <div className="detail-video"><video controls autoPlay playsInline preload="auto" title={`Curtis Riggleman explains ${book.title}`}><source src={book.videoSrc} type="video/mp4" />Your browser does not support the video tag.</video></div>
       </section>
       <section className="detail-book-summary">
         <div className="detail-cover-wrap"><Image src={book.image} alt={`${book.title} book cover`} width={1390} height={2218} className="detail-cover" /></div>
