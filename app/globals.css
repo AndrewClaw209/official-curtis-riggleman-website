@@ -615,7 +615,7 @@ body.testimony-call-modal-open { overflow: hidden; }
 .detail-book-summary p:not(.kicker) { color: #d8d5ca; line-height: 1.75; }
 .book-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; }
 .book-modal-backdrop { position: absolute; inset: 0; border: 0; background: rgba(0,0,0,.78); cursor: pointer; }
-.book-modal-panel { position: relative; width: min(540px, 100%); padding: clamp(1.6rem, 5vw, 3rem); border: 1px solid rgba(242,205,127,.45); border-radius: 1rem; background: linear-gradient(145deg, #202936, #0d1118); box-shadow: 0 30px 90px #000; }
+.book-modal-panel { position: relative; width: min(540px, 100%); max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.6rem, 5vw, 3rem); border: 1px solid rgba(242,205,127,.45); border-radius: 1rem; background: linear-gradient(145deg, #202936, #0d1118); box-shadow: 0 30px 90px #000; }
 .book-modal-panel h2 { margin: .35rem 0 .75rem; color: var(--text-soft); font-family: "Anton", sans-serif; text-transform: uppercase; font-size: clamp(1.9rem, 5vw, 3rem); }
 .book-modal-panel > p:not(.kicker) { color: #d8d5ca; line-height: 1.6; }
 .book-modal-close { position: absolute; top: .75rem; right: 1rem; border: 0; background: transparent; color: #fff7df; font-size: 2rem; cursor: pointer; }
