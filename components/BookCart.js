@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const CART_KEY = "curtis-book-cart";
 const CART_EVENT = "curtis-book-cart-updated";
@@ -21,6 +22,7 @@ function writeCart(cart) {
 }
 
 export default function BookCart({ book, showTrigger = true }) {
+  const pathname = usePathname();
   const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -75,16 +77,17 @@ export default function BookCart({ book, showTrigger = true }) {
     }
   };
 
-  const itemCount = cart.find((item) => item.slug === book?.slug)?.quantity || 0;
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const cartTotal = cartCount * DIGITAL_PRICE;
+  const normalizedPathname = pathname?.replace(/\/$/, "") || "";
+  const canShowCartTrigger = ["/training-courses", "/merch"].includes(normalizedPathname);
 
   return (
     <>
       {showTrigger && book ? <button className="btn btn-buy" type="button" onClick={addToCart}>
-        {itemCount ? `Add to Cart · ${itemCount}` : "Add to Cart"} <span aria-hidden="true">+</span>
+        {cart.length ? "Add to Cart" : "Buy Now"} <span aria-hidden="true">+</span>
       </button> : null}
-      {!book ? <button className="cart-trigger" type="button" onClick={() => setIsOpen(true)} aria-label={`Open shopping cart, ${cartCount} items`}>
+      {!book && canShowCartTrigger ? <button className="cart-trigger" type="button" onClick={() => setIsOpen(true)} aria-label={`Open shopping cart, ${cartCount} items`}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4h2l1.8 10.2a2 2 0 0 0 2 1.8h7.9a2 2 0 0 0 1.9-1.5L21 7H7" /><circle cx="10" cy="20" r="1.3" /><circle cx="18" cy="20" r="1.3" /></svg>
         <span className="cart-trigger-label">Cart</span><span className="cart-count" aria-hidden="true">{cartCount}</span>
       </button> : null}
