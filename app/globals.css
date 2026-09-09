@@ -605,6 +605,15 @@ body.testimony-call-modal-open { overflow: hidden; }
 .book-card-content > p { margin: 0 0 1.1rem; color: #cfd0ca; font-size: .9rem; line-height: 1.6; }
 .book-card .btn, .detail-book-summary .btn { padding: .72rem 1rem; font-size: .7rem; }
 .book-card-actions, .detail-book-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+.book-purchase-wrap { position: relative; }
+.book-purchase-options { position: absolute; left: 0; bottom: calc(100% + .55rem); z-index: 20; width: 220px; padding: .75rem; border: 1px solid rgba(242,205,127,.35); border-radius: .65rem; background: #18202b; box-shadow: 0 15px 35px rgba(0,0,0,.4); }
+.book-purchase-options p { margin: 0 0 .5rem; color: #aaa59a; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.book-purchase-options button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: .75rem; padding: .65rem .5rem; border: 0; border-top: 1px solid rgba(242,205,127,.14); color: var(--text-soft); background: transparent; text-align: left; cursor: pointer; }
+.book-purchase-options button:hover { background: rgba(242,205,127,.1); }
+.book-purchase-options button span { display: grid; gap: .15rem; }
+.book-purchase-options button strong { font-size: .78rem; }
+.book-purchase-options button small { color: #aaa59a; font-size: .68rem; }
+.book-purchase-options button b { color: var(--gold); font-size: .8rem; }
 .btn-buy { padding: .72rem 1rem; font-size: .7rem; border: 1px solid rgba(242,205,127,.7); color: var(--text-soft); background: transparent; }
 .btn-buy:hover { background: rgba(242,205,127,.12); }
 .btn:disabled { cursor: wait; opacity: .65; }

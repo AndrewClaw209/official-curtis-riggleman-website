@@ -1,11 +1,20 @@
 import { getBook } from "../../../training-courses/books";
 
 const priceIds = {
-  "closing-101": process.env.STRIPE_PRICE_CLOSING_101,
-  "built-to-lead-mindset-principles": process.env.STRIPE_PRICE_BUILT_TO_LEAD,
-  "the-first-five": process.env.STRIPE_PRICE_THE_FIRST_FIVE,
-  "objections-arent-real": process.env.STRIPE_PRICE_OBJECTIONS_ARENT_REAL,
-  "dial-for-dollars": process.env.STRIPE_PRICE_DIAL_FOR_DOLLARS
+  digital: {
+    "closing-101": process.env.STRIPE_PRICE_CLOSING_101_DIGITAL,
+    "built-to-lead-mindset-principles": process.env.STRIPE_PRICE_BUILT_TO_LEAD_DIGITAL,
+    "the-first-five": process.env.STRIPE_PRICE_THE_FIRST_FIVE_DIGITAL,
+    "objections-arent-real": process.env.STRIPE_PRICE_OBJECTIONS_ARENT_REAL_DIGITAL,
+    "dial-for-dollars": process.env.STRIPE_PRICE_DIAL_FOR_DOLLARS_DIGITAL
+  },
+  physical: {
+    "closing-101": process.env.STRIPE_PRICE_CLOSING_101_PHYSICAL,
+    "built-to-lead-mindset-principles": process.env.STRIPE_PRICE_BUILT_TO_LEAD_PHYSICAL,
+    "the-first-five": process.env.STRIPE_PRICE_THE_FIRST_FIVE_PHYSICAL,
+    "objections-arent-real": process.env.STRIPE_PRICE_OBJECTIONS_ARENT_REAL_PHYSICAL,
+    "dial-for-dollars": process.env.STRIPE_PRICE_DIAL_FOR_DOLLARS_PHYSICAL
+  }
 };
 
 export async function POST(request) {
@@ -14,11 +23,11 @@ export async function POST(request) {
   }
 
   const { items = [] } = await request.json();
-  const lineItems = items.map(({ slug, quantity }) => {
+  const lineItems = items.map(({ slug, format = "digital", quantity }) => {
     const book = getBook(slug);
-    const price = priceIds[slug];
+    const price = priceIds[format]?.[slug];
     const count = Number(quantity);
-    if (!book || !price || !Number.isInteger(count) || count < 1 || count > 20) return null;
+    if (!book || !["digital", "physical"].includes(format) || !price || !Number.isInteger(count) || count < 1 || count > 20) return null;
     return { price, quantity: count };
   });
 
