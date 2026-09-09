@@ -2,6 +2,7 @@ import { Anton, Manrope } from "next/font/google";
 import "./globals.css";
 import "../styles.css";
 import SiteFooter from "../components/SiteFooter";
+import BookCart from "../components/BookCart";
 
 const anton = Anton({
   variable: "--font-anton",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${anton.variable} ${manrope.variable}`}>
         {children}
+        <BookCart showTrigger={false} />
         <SiteFooter />
       </body>
     </html>

@@ -608,6 +608,10 @@ body.testimony-call-modal-open { overflow: hidden; }
 .btn-buy { padding: .72rem 1rem; font-size: .7rem; border: 1px solid rgba(242,205,127,.7); color: var(--text-soft); background: transparent; }
 .btn-buy:hover { background: rgba(242,205,127,.12); }
 .btn:disabled { cursor: wait; opacity: .65; }
+.cart-trigger { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: inline-flex; align-items: center; gap: .45rem; min-height: 2.7rem; padding: .55rem .7rem .55rem .8rem; border: 1px solid rgba(242,205,127,.72); border-radius: 999px; color: var(--text-soft); background: rgba(18, 22, 28, .92); box-shadow: 0 8px 25px rgba(0,0,0,.3); cursor: pointer; font: 700 .72rem "Manrope", sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+.cart-trigger:hover { background: rgba(52, 45, 29, .96); }
+.cart-trigger svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.cart-count { display: grid; place-items: center; min-width: 1.35rem; height: 1.35rem; padding: 0 .25rem; border-radius: 50%; color: #17130b; background: var(--gold-bright); font-size: .68rem; }
 .book-cart { position: fixed; inset: 0; z-index: 110; display: grid; place-items: center; padding: 1rem; }
 .book-cart-backdrop { position: absolute; inset: 0; border: 0; background: rgba(0,0,0,.8); cursor: pointer; }
 .book-cart-panel { position: relative; width: min(520px, 100%); max-height: calc(100dvh - 2rem); overflow-y: auto; padding: clamp(1.6rem, 5vw, 3rem); border-radius: 1rem; background: linear-gradient(145deg, #202936, #0d1118); box-shadow: 0 30px 90px #000; }
@@ -615,8 +619,11 @@ body.testimony-call-modal-open { overflow: hidden; }
 .book-cart-close { position: absolute; top: .75rem; right: 1rem; border: 0; background: transparent; color: #fff7df; font-size: 2rem; cursor: pointer; }
 .book-cart-items { display: grid; gap: .75rem; margin-bottom: 1.2rem; }
 .book-cart-item { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: .9rem; border: 1px solid rgba(242,205,127,.2); border-radius: .5rem; color: var(--text-soft); }
+.book-cart-item small { display: block; margin-top: .25rem; color: #aaa59a; font-size: .72rem; }
+.book-cart-quantity { display: flex; align-items: center; gap: .8rem; }
 .book-cart-item label { display: flex; align-items: center; gap: .4rem; color: #d8d5ca; font-size: .8rem; }
 .book-cart-item input { width: 3.5rem; padding: .35rem; color: #111; border: 0; border-radius: .25rem; }
+.book-cart-total { display: flex; justify-content: space-between; margin: .4rem 0 1rem; padding-top: 1rem; border-top: 1px solid rgba(242,205,127,.25); color: var(--text-soft); font-size: 1rem; }
 .book-cart-note { color: #d8d5ca; font-size: .85rem; line-height: 1.5; }
 .book-cart-error { margin-top: 1rem; color: #ffaaa0; font-size: .85rem; }
 .detail-header { margin-bottom: 1rem; }
