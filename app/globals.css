@@ -221,11 +221,12 @@ body::before {
   background: rgba(0, 0, 0, 0.35);
 }
 
-.sticky-video iframe {
+.sticky-video video {
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
+  object-fit: cover;
 }
 
 .hero-social-link {

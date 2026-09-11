@@ -73,8 +73,6 @@ const ghlCalendarUrl = process.env.NEXT_PUBLIC_GHL_CALENDAR_URL;
 const ghlFormUrl = process.env.NEXT_PUBLIC_GHL_FORM_URL;
 const hasCalendar = Boolean(ghlCalendarUrl);
 const hasForm = Boolean(ghlFormUrl);
-const stickyVideoUrl =
-  "https://www.youtube.com/embed/maTgs6UR_b0?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=maTgs6UR_b0";
 const youtubeChannelUrl = "https://www.youtube.com/@OfficialCurtisRiggleman";
 const featuredMediaVideoUrl = "https://www.youtube.com/watch?v=d9vqxQWuzSs";
 const featuredMediaVideoThumb = "https://img.youtube.com/vi/d9vqxQWuzSs/maxresdefault.jpg";
@@ -158,13 +156,13 @@ export default function Home() {
       </header>
 
       <aside className="sticky-video" aria-label="Featured Curtis video">
-        <iframe
-          src={stickyVideoUrl}
+        <video
+          src="/homepage-video-curtis.mp4"
           title="Curtis Riggleman featured video"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
+          autoPlay
+          muted
+          loop
+          playsInline
         />
       </aside>
     </>
