@@ -32,7 +32,8 @@ const topTabs = [
   { label: "Testimonies", href: "/testimonies" },
   { label: "Merch", href: "#offers" },
   { label: "Sales Coaching", href: "/sales-coaching" },
-  { label: "Media", href: "/media" }
+  { label: "Media", href: "/media" },
+  { label: "Curtis AI", href: "https://riggleman-voice-coach-liart.vercel.app/", external: true }
 ];
 
 const offers = [
@@ -149,7 +150,12 @@ export default function Home() {
 
           <nav className="bottom-tabs" aria-label="Primary navigation">
             {topTabs.map((tab) => (
-              <a key={tab.label} href={tab.href}>
+              <a
+                key={tab.label}
+                href={tab.href}
+                target={tab.external ? "_blank" : undefined}
+                rel={tab.external ? "noreferrer" : undefined}
+              >
                 {tab.label}
               </a>
             ))}
