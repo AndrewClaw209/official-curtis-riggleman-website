@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import RevealOnScroll from "../components/RevealOnScroll";
 
 const socialLinks = [
@@ -112,6 +113,8 @@ function SocialIcon({ type }) {
 }
 
 export default function Home() {
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+
   return (
     <>
       <RevealOnScroll />
@@ -160,10 +163,19 @@ export default function Home() {
           src="/homepage-video-curtis.mp4"
           title="Curtis Riggleman featured video"
           autoPlay
-          muted
+          muted={isVideoMuted}
           loop
           playsInline
         />
+        <button
+          className="sticky-video-toggle"
+          type="button"
+          onClick={() => setIsVideoMuted((muted) => !muted)}
+          aria-label={isVideoMuted ? "Unmute featured video" : "Mute featured video"}
+          aria-pressed={!isVideoMuted}
+        >
+          {isVideoMuted ? "🔇 Unmute" : "🔊 Mute"}
+        </button>
       </aside>
     </>
   );

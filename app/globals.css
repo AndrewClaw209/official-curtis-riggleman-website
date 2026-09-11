@@ -229,6 +229,28 @@ body::before {
   object-fit: cover;
 }
 
+.sticky-video-toggle {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  padding: 0.4rem 0.62rem;
+  border: 1px solid rgba(255, 236, 187, 0.7);
+  border-radius: 999px;
+  color: #fff8e8;
+  background: rgba(0, 0, 0, 0.72);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.sticky-video-toggle:hover,
+.sticky-video-toggle:focus-visible {
+  background: rgba(125, 16, 25, 0.9);
+}
+
 .hero-social-link {
   width: 44px;
   height: 44px;
