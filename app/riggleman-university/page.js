@@ -21,6 +21,11 @@ const classHighlights = [
   }
 ];
 
+const ghlUniversityFormUrl =
+  process.env.NEXT_PUBLIC_GHL_RIGGLEMAN_UNIVERSITY_FORM_URL ||
+  process.env.NEXT_PUBLIC_GHL_SALES_COACHING_FORM_URL ||
+  "https://links.officialcurtisriggleman.com/widget/form/ZAA3ACp8Yq2p0LIBZgyL";
+
 export default function RigglemanUniversityPage() {
   return (
     <main className="riggleman-university-page">
@@ -92,7 +97,14 @@ export default function RigglemanUniversityPage() {
         <p className="kicker">Your next move</p>
         <h2 id="university-signup-title">Ready for the next class?</h2>
         <p>Send a request for the next Riggleman University class and Curtis&apos; team will follow up with the schedule and enrollment details.</p>
-        <a className="university-primary university-signup-button" href="mailto:info@officialcurtisriggleman.com?subject=Riggleman%20University%20next%20class">Request class information <span aria-hidden="true">↗</span></a>
+        <a
+          className="university-primary university-signup-button"
+          href={ghlUniversityFormUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Request class information <span aria-hidden="true">↗</span>
+        </a>
       </section>
     </main>
   );
