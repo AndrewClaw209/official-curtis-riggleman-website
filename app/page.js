@@ -148,6 +148,21 @@ export default function Home() {
             </div>
           </div>
 
+          <nav className="hero-social-row" aria-label="Curtis Riggleman social media">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                className="hero-social-link"
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Curtis Riggleman on ${social.label}`}
+              >
+                <SocialIcon type={social.icon} />
+              </a>
+            ))}
+          </nav>
+
           <nav className="bottom-tabs" aria-label="Primary navigation">
             {topTabs.map((tab) => (
               <a
