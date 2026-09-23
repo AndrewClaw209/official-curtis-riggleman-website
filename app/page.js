@@ -132,10 +132,10 @@ export default function Home() {
                 priority
               />
               <Image
-                src="/assets/logo-curtis-across.png"
+                src="/assets/logo-curtis-home.png"
                 alt="Official Curtis Riggleman"
-                width={1024}
-                height={1024}
+                width={894}
+                height={240}
                 className="hero-center-logo-across"
                 priority
               />
