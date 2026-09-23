@@ -504,6 +504,16 @@ body:has(.media-page-main)::before { background: #000; }
   margin-top: 2rem;
 }
 
+.ru-ready-video-actions {
+  margin-top: 2.25rem;
+}
+
+.ru-ready-video-actions a {
+  min-height: 4.25rem;
+  padding: 1.15rem 1.8rem;
+  font-size: .95rem;
+}
+
 .ru-ready-primary,
 .ru-ready-secondary {
   display: inline-flex;

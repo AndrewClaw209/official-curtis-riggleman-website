@@ -54,6 +54,10 @@ export default function SalesCoachingPage() {
         <div className="ru-ready-section-heading">
           <p className="kicker">Built for the showroom floor</p>
           <h2 id="ru-ready-video-title">Make every rep ready to sell.</h2>
+          <div className="ru-ready-actions ru-ready-video-actions" aria-label="Sales coaching next steps">
+            <a className="ru-ready-primary" href="#sales-coaching-form">Get early access <span aria-hidden="true">↗</span></a>
+            <a className="ru-ready-secondary" href="#platform">Explore the platform <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
       </section>
 
