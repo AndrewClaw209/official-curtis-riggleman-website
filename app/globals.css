@@ -487,6 +487,7 @@ body:has(.media-page-main)::before { background: #000; }
   box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
 }
 
+.sales-coaching-video video,
 .sales-coaching-video iframe,
 .sales-coaching-form {
   display: block;
