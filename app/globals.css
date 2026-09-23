@@ -438,57 +438,150 @@ body:has(.media-page-main)::before { background: #000; }
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  padding: 0 clamp(1rem, 5vw, 5rem) 5rem;
-  background: #000;
+  padding: 0 clamp(1rem, 5vw, 5rem) 7rem;
+  background: linear-gradient(180deg, #050608 0%, #0b0d12 55%, #050608 100%);
 }
 
-.sales-coaching-hero,
-.sales-coaching-about,
+.ru-ready-hero,
+.ru-ready-video-section,
+.ru-ready-problem,
+.ru-ready-platform,
+.ru-ready-hiring,
 .sales-coaching-signup {
-  width: min(980px, 100%);
+  width: min(1120px, 100%);
   margin: 0 auto;
-  text-align: center;
 }
 
-.sales-coaching-hero {
-  padding: 0 0 4rem;
+.ru-ready-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+  min-height: min(740px, 92svh);
+  padding: clamp(7rem, 13vw, 10rem) 0 clamp(4rem, 8vw, 7rem);
 }
 
-.sales-coaching-hero h1,
-.sales-coaching-about h2,
+.ru-ready-hero-copy {
+  max-width: 700px;
+}
+
+.ru-ready-hero h1,
+.ru-ready-section-heading h2,
+.ru-ready-problem h2,
+.ru-ready-hiring h2,
 .sales-coaching-signup h2 {
-  margin: .35rem 0 .9rem;
+  margin: .45rem 0 1.15rem;
   color: #fff7df;
   font-family: "Anton", sans-serif;
-  font-size: clamp(2.4rem, 6vw, 5.8rem);
-  line-height: .95;
-  letter-spacing: .04em;
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  line-height: .93;
+  letter-spacing: .035em;
   text-transform: uppercase;
 }
 
+.ru-ready-hero h1 {
+  max-width: 680px;
+}
+
+.ru-ready-hero-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ru-ready-hero-brand img {
+  display: block;
+  width: min(100%, 380px);
+  height: auto;
+  filter: drop-shadow(0 20px 42px rgba(242, 176, 50, .2));
+}
+
+.ru-ready-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.25rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.ru-ready-primary,
+.ru-ready-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 3.25rem;
+  padding: .85rem 1.25rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.ru-ready-primary {
+  color: #080a0d;
+  background: var(--gold);
+}
+
+.ru-ready-secondary {
+  color: var(--gold);
+  border: 1px solid rgba(242, 205, 127, .42);
+}
+
+.ru-ready-primary:hover,
+.ru-ready-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.ru-ready-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(242, 205, 127, .08);
+}
+
+.ru-ready-video-section {
+  padding: 1rem 0 clamp(5rem, 10vw, 8rem);
+}
+
+.ru-ready-section-heading {
+  max-width: 760px;
+  margin-bottom: 1.6rem;
+}
+
+.ru-ready-section-heading h2,
+.ru-ready-problem h2,
+.ru-ready-hiring h2,
+.sales-coaching-signup h2 {
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+}
+
 .sales-coaching-lede,
-.sales-coaching-about > p:last-child,
+.ru-ready-problem > p:last-child,
+.ru-ready-hiring > p,
 .sales-coaching-signup > p:not(.kicker) {
   max-width: 720px;
-  margin: 0 auto;
   color: rgba(247, 242, 229, .76);
   font-size: clamp(.95rem, 1.6vw, 1.1rem);
-  line-height: 1.7;
+  line-height: 1.75;
+}
+
+.sales-coaching-lede {
+  margin: 0;
 }
 
 .sales-coaching-video {
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin: 2rem auto 0;
+  margin: 0 auto;
   overflow: hidden;
-  border: 1px solid rgba(242, 205, 127, .3);
-  border-radius: 1rem;
+  border: 1px solid rgba(242, 205, 127, .32);
+  border-radius: 1.1rem;
   background: #000;
   box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
 }
 
 .sales-coaching-video video,
-.sales-coaching-video iframe,
 .sales-coaching-form {
   display: block;
   width: 100%;
@@ -496,20 +589,88 @@ body:has(.media-page-main)::before { background: #000; }
   border: 0;
 }
 
-.sales-coaching-about {
+.ru-ready-problem {
   max-width: 820px;
-  padding: 1rem 0 5rem;
+  padding: 1.5rem 0 clamp(5rem, 10vw, 8rem);
 }
 
-.sales-coaching-about h2,
+.ru-ready-problem h2 {
+  max-width: 760px;
+}
+
+.ru-ready-problem > p:last-child {
+  margin: 0;
+}
+
+.ru-ready-platform {
+  padding: 1rem 0 clamp(5rem, 10vw, 8rem);
+}
+
+.ru-ready-module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(242, 205, 127, .2);
+  border-radius: 1rem;
+  background: rgba(242, 205, 127, .2);
+}
+
+.ru-ready-module {
+  min-height: 220px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgba(9, 11, 15, .94);
+}
+
+.ru-ready-module-number {
+  display: block;
+  margin-bottom: 2rem;
+  color: var(--gold-strong);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.ru-ready-module h3 {
+  margin: 0 0 .7rem;
+  color: #fff7df;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.ru-ready-module p {
+  margin: 0;
+  color: rgba(247, 242, 229, .66);
+  font-size: .93rem;
+  line-height: 1.65;
+}
+
+.ru-ready-hiring {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr);
+  gap: 3rem;
+  align-items: end;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem) clamp(5rem, 10vw, 8rem);
+}
+
+.ru-ready-hiring > p {
+  margin: 0 0 .5rem;
+}
+
 .sales-coaching-signup h2 {
-  font-size: clamp(2rem, 4.5vw, 4rem);
+  margin-bottom: .8rem;
 }
 
 .sales-coaching-signup {
-  max-width: 760px;
+  max-width: 900px;
   padding: 2.5rem 0 1rem;
+  text-align: center;
   border-top: 1px solid rgba(242, 205, 127, .22);
+}
+
+.sales-coaching-signup > p:not(.kicker) {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sales-coaching-form {
@@ -1018,6 +1179,59 @@ body.book-modal-open { overflow: hidden; }
 .media-appearance-form-placeholder small { color: rgba(247, 242, 229, 0.55); line-height: 1.5; }
 
 @media (max-width: 700px) {
+  .ru-ready-hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    min-height: auto;
+    gap: 1rem;
+    padding-top: 6.5rem;
+  }
+
+  .ru-ready-hero-brand {
+    min-height: 230px;
+  }
+
+  .ru-ready-hero-brand img {
+    width: min(260px, 68vw);
+  }
+
+  .ru-ready-hero h1 {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+  }
+
+  .ru-ready-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ru-ready-primary,
+  .ru-ready-secondary {
+    justify-content: center;
+  }
+
+  .ru-ready-module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ru-ready-module {
+    min-height: auto;
+  }
+
+  .ru-ready-module-number {
+    margin-bottom: 1.2rem;
+  }
+
+  .ru-ready-hiring {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .ru-ready-hiring > p {
+    margin-top: 1rem;
+  }
+
   .media-page-main { width: min(100% - 1.25rem, 1120px); padding-top: 0; }
   .media-hero { padding-bottom: 2rem; }
   .media-section-heading { align-items: flex-start; flex-direction: column; }
