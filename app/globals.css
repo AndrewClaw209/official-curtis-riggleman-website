@@ -294,9 +294,17 @@ body::before {
 }
 
 .hero-social-link .icon-facebook,
-.hero-social-link .icon-tiktok,
-.hero-social-link .icon-youtube {
+.hero-social-link .icon-tiktok {
   stroke: none;
+}
+
+.hero-social-link .icon-youtube {
+  fill: #f8dfab;
+  stroke: none;
+}
+
+.hero-social-link .icon-youtube .youtube-play {
+  fill: rgba(31, 20, 18, 0.95);
 }
 
 .bottom-tabs {
