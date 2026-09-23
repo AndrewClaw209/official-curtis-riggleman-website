@@ -31,7 +31,7 @@ const topTabs = [
   { label: "Training Courses", href: "/training-courses" },
   { label: "Testimonies", href: "/testimonies" },
   { label: "Merch", href: "#offers" },
-  { label: "Sales Coaching", href: "/sales-coaching" },
+  { label: "R U READY Sales Coaching", href: "/sales-coaching" },
   { label: "Media", href: "/media" },
   { label: "Curtis AI", href: "https://riggleman-voice-coach-liart.vercel.app/", external: true }
 ];
