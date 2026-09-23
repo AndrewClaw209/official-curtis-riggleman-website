@@ -24,38 +24,22 @@ const shortsVideoIds = [
 ];
 
 function getShortEmbedUrl(videoId) {
-  return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`;
-}
-
-function getShortThumbnailUrl(videoId) {
-  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+  return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`;
 }
 
 const loopingShorts = [...shortsVideoIds, ...shortsVideoIds];
 
-function ShortVideoCard({ videoId, index, isLoaded, onLoad }) {
+function ShortVideoCard({ videoId, index }) {
   return (
     <div className="media-short-video-shell">
-      {isLoaded ? (
-        <iframe
-          src={getShortEmbedUrl(videoId)}
-          title={`Curtis Riggleman short ${index + 1}`}
-          loading={index < 3 ? "eager" : "lazy"}
-          allow="autoplay; encrypted-media; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      ) : (
-        <button
-          className="media-short-video-poster"
-          type="button"
-          onClick={onLoad}
-          aria-label={`Play Curtis Riggleman short ${index + 1}`}
-        >
-          <img src={getShortThumbnailUrl(videoId)} alt="" loading="lazy" />
-          <span className="media-short-video-play" aria-hidden="true">▶</span>
-        </button>
-      )}
+      <iframe
+        src={getShortEmbedUrl(videoId)}
+        title={`Curtis Riggleman short ${index + 1}`}
+        loading="lazy"
+        allow="autoplay; encrypted-media; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      />
     </div>
   );
 }
@@ -63,11 +47,6 @@ function ShortVideoCard({ videoId, index, isLoaded, onLoad }) {
 export default function MediaPage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isAppearanceModalOpen, setIsAppearanceModalOpen] = useState(false);
-  // Start a few previews automatically so the carousel feels alive without
-  // loading every YouTube player (the second loop remains poster-only).
-  const [loadedShorts, setLoadedShorts] = useState(() => new Set(
-    shortsVideoIds.slice(0, 3).map((videoId, index) => `${videoId}-${index}`)
-  ));
   const carouselViewportRef = useRef(null);
 
   useEffect(() => {
@@ -184,8 +163,6 @@ export default function MediaPage() {
                     key={`${videoId}-${index}`}
                     videoId={videoId}
                     index={index}
-                    isLoaded={loadedShorts.has(`${videoId}-${index}`)}
-                    onLoad={() => setLoadedShorts((current) => new Set(current).add(`${videoId}-${index}`))}
                   />
                 ))}
               </div>
