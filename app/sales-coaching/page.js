@@ -38,6 +38,25 @@ const platformModules = [
 export default function SalesCoachingPage() {
   return (
     <main className="sales-coaching-page">
+      <section className="ru-ready-video-section ru-ready-video-first" aria-labelledby="ru-ready-video-title">
+        <div className="sales-coaching-video">
+          <video
+            src="/sales-coaching-video.mp4"
+            title="Learn about the R U Ready sales coaching platform"
+            controls
+            autoPlay
+            playsInline
+            preload="auto"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="ru-ready-section-heading">
+          <p className="kicker">Built for the showroom floor</p>
+          <h2 id="ru-ready-video-title">Make every rep ready to sell.</h2>
+        </div>
+      </section>
+
       <section className="ru-ready-hero">
         <div className="ru-ready-hero-copy">
           <p className="kicker">AI-powered sales coaching for dealerships</p>
@@ -52,24 +71,6 @@ export default function SalesCoachingPage() {
         </div>
         <div className="ru-ready-hero-brand">
           <img src="/assets/ru-ready-logo.png" alt="R U Ready Sales Coaching" />
-        </div>
-      </section>
-
-      <section className="ru-ready-video-section" aria-labelledby="ru-ready-video-title">
-        <div className="ru-ready-section-heading">
-          <p className="kicker">Built for the showroom floor</p>
-          <h2 id="ru-ready-video-title">Make every rep ready to sell.</h2>
-        </div>
-        <div className="sales-coaching-video">
-          <video
-            src="/sales-coaching-video.mp4"
-            title="Learn about the R U Ready sales coaching platform"
-            controls
-            playsInline
-            preload="metadata"
-          >
-            Your browser does not support the video tag.
-          </video>
         </div>
       </section>
 
