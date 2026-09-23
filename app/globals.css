@@ -368,6 +368,7 @@ body:has(.training-page),
 body:has(.book-detail-page),
 body:has(.testimonies-page),
 body:has(.sales-coaching-page),
+body:has(.riggleman-university-page),
 body:has(.media-page-main) {
   background: #000;
   overflow-x: hidden;
@@ -377,6 +378,7 @@ body:has(.training-page)::before,
 body:has(.book-detail-page)::before,
 body:has(.testimonies-page)::before,
 body:has(.sales-coaching-page)::before,
+body:has(.riggleman-university-page)::before,
 body:has(.media-page-main)::before { background: #000; }
 
 .site-footer {
@@ -440,6 +442,208 @@ body:has(.media-page-main)::before { background: #000; }
   min-height: 100vh;
   padding: 0 clamp(1rem, 5vw, 5rem) 7rem;
   background: linear-gradient(180deg, #050608 0%, #0b0d12 55%, #050608 100%);
+}
+
+.riggleman-university-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 0 clamp(1rem, 5vw, 5rem) 7rem;
+  background: linear-gradient(180deg, #050608 0%, #0b0d12 55%, #050608 100%);
+}
+
+.university-video-section,
+.university-intro,
+.university-curriculum,
+.university-fit,
+.university-signup {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.university-video-section {
+  padding: clamp(4.5rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.university-video-shell {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(242, 205, 127, .32);
+  border-radius: 1.1rem;
+  background: #000;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
+}
+
+.university-video-shell video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.university-video-copy {
+  max-width: 850px;
+  margin: clamp(1.75rem, 4vw, 3rem) auto 0;
+  text-align: center;
+}
+
+.university-video-copy h1,
+.university-section-heading h2,
+.university-intro h2,
+.university-fit h2,
+.university-signup h2 {
+  margin: .45rem 0 1.15rem;
+  color: #fff7df;
+  font-family: "Anton", sans-serif;
+  font-size: clamp(2.7rem, 6vw, 5.8rem);
+  line-height: .93;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.university-video-copy > p:not(.kicker),
+.university-intro > p,
+.university-signup > p:not(.kicker) {
+  max-width: 720px;
+  margin: 0 auto;
+  color: rgba(247, 242, 229, .76);
+  font-size: clamp(.95rem, 1.6vw, 1.1rem);
+  line-height: 1.75;
+}
+
+.university-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem 1.25rem;
+  margin-top: 2rem;
+}
+
+.university-primary,
+.university-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  min-height: 4rem;
+  padding: 1rem 1.65rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.university-primary {
+  color: #080a0d;
+  background: var(--gold);
+}
+
+.university-secondary {
+  color: var(--gold);
+  border: 1px solid rgba(242, 205, 127, .42);
+}
+
+.university-primary:hover,
+.university-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.university-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(242, 205, 127, .08);
+}
+
+.university-intro,
+.university-fit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
+  gap: 3rem;
+  align-items: end;
+  padding: 1.5rem 0 clamp(5rem, 10vw, 8rem);
+}
+
+.university-intro h2,
+.university-fit h2,
+.university-signup h2,
+.university-section-heading h2 {
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+}
+
+.university-intro > p {
+  margin: 0 0 .5rem;
+}
+
+.university-curriculum {
+  padding: 1rem 0 clamp(5rem, 10vw, 8rem);
+}
+
+.university-section-heading {
+  max-width: 760px;
+  margin-bottom: 1.6rem;
+}
+
+.university-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(242, 205, 127, .2);
+  border-radius: 1rem;
+  background: rgba(242, 205, 127, .2);
+}
+
+.university-highlight {
+  min-height: 220px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgba(9, 11, 15, .94);
+}
+
+.university-highlight-number {
+  display: block;
+  margin-bottom: 2rem;
+  color: var(--gold-strong);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.university-highlight h3 {
+  margin: 0 0 .7rem;
+  color: #fff7df;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.university-highlight p,
+.university-fit li {
+  margin: 0;
+  color: rgba(247, 242, 229, .66);
+  font-size: .93rem;
+  line-height: 1.65;
+}
+
+.university-fit ul {
+  display: grid;
+  gap: .8rem;
+  margin: 0 0 .5rem;
+  padding-left: 1.2rem;
+}
+
+.university-fit li::marker { color: var(--gold); }
+
+.university-signup {
+  max-width: 900px;
+  padding: 2.5rem 0 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(242, 205, 127, .22);
+}
+
+.university-signup-button {
+  margin-top: 2rem;
 }
 
 .ru-ready-hero,
@@ -1202,6 +1406,51 @@ body.book-modal-open { overflow: hidden; }
 .media-appearance-form-placeholder small { color: rgba(247, 242, 229, 0.55); line-height: 1.5; }
 
 @media (max-width: 700px) {
+  .university-video-section {
+    padding-top: 4.5rem;
+  }
+
+  .university-video-shell {
+    aspect-ratio: 16 / 9;
+    border-radius: .8rem;
+  }
+
+  .university-video-copy h1 {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+  }
+
+  .university-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .university-primary,
+  .university-secondary {
+    width: 100%;
+  }
+
+  .university-intro,
+  .university-fit {
+    display: block;
+  }
+
+  .university-intro > p,
+  .university-fit ul {
+    margin-top: 1.25rem;
+  }
+
+  .university-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .university-highlight {
+    min-height: auto;
+  }
+
+  .university-highlight-number {
+    margin-bottom: 1.2rem;
+  }
+
   .ru-ready-hero {
     display: flex;
     flex-direction: column-reverse;
