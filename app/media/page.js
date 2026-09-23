@@ -27,11 +27,43 @@ function getShortEmbedUrl(videoId) {
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`;
 }
 
+function getShortThumbnailUrl(videoId) {
+  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+}
+
 const loopingShorts = [...shortsVideoIds, ...shortsVideoIds];
+
+function ShortVideoCard({ videoId, index, isLoaded, onLoad }) {
+  return (
+    <div className="media-short-video-shell">
+      {isLoaded ? (
+        <iframe
+          src={getShortEmbedUrl(videoId)}
+          title={`Curtis Riggleman short ${index + 1}`}
+          loading="lazy"
+          allow="autoplay; encrypted-media; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          className="media-short-video-poster"
+          type="button"
+          onClick={onLoad}
+          aria-label={`Play Curtis Riggleman short ${index + 1}`}
+        >
+          <img src={getShortThumbnailUrl(videoId)} alt="" loading="lazy" />
+          <span className="media-short-video-play" aria-hidden="true">▶</span>
+        </button>
+      )}
+    </div>
+  );
+}
 
 export default function MediaPage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isAppearanceModalOpen, setIsAppearanceModalOpen] = useState(false);
+  const [loadedShorts, setLoadedShorts] = useState(() => new Set());
   const carouselViewportRef = useRef(null);
 
   useEffect(() => {
@@ -144,15 +176,13 @@ export default function MediaPage() {
             <div className="media-carousel-viewport" ref={carouselViewportRef}>
               <div className="media-carousel-track">
                 {loopingShorts.map((videoId, index) => (
-                  <div className="media-short-video-shell" key={`${videoId}-${index}`}>
-                    <iframe
-                      src={getShortEmbedUrl(videoId)}
-                      title={`Curtis Riggleman short ${index + 1}`}
-                      allow="autoplay; encrypted-media; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
+                  <ShortVideoCard
+                    key={`${videoId}-${index}`}
+                    videoId={videoId}
+                    index={index}
+                    isLoaded={loadedShorts.has(videoId)}
+                    onLoad={() => setLoadedShorts((current) => new Set(current).add(videoId))}
+                  />
                 ))}
               </div>
             </div>

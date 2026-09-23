@@ -1509,6 +1509,49 @@ body.book-modal-open { overflow: hidden; }
   z-index: 1;
 }
 
+.media-short-video-poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: #080808;
+}
+
+.media-short-video-poster img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  opacity: 0.82;
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+.media-short-video-poster:hover img,
+.media-short-video-poster:focus-visible img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.media-short-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: #17130b;
+  background: var(--gold);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+}
+
 .media-short-video-shell:hover,
 .media-short-video-shell:focus-within {
   transform: scale(1.1);
