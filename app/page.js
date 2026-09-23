@@ -34,6 +34,7 @@ const topTabs = [
   { label: "Riggleman University", href: "/riggleman-university" },
   { label: "R U READY Sales Coaching", href: "/sales-coaching" },
   { label: "Media", href: "/media" },
+  { label: "Get in Touch", href: "/contact" },
   { label: "Curtis AI", href: "https://riggleman-voice-coach-liart.vercel.app/", external: true }
 ];
 
