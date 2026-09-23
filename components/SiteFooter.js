@@ -6,10 +6,10 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <Link className="site-footer-logo-link" href="/#top" aria-label="Return to the Curtis Riggleman homepage">
         <Image
-          src="/assets/logo-curtis-transparent.png"
+          src="/assets/logo-curtis-ai.png"
           alt="Official Curtis Riggleman"
-          width={1024}
-          height={1024}
+          width={993}
+          height={347}
           className="site-footer-logo"
         />
       </Link>
