@@ -3,6 +3,7 @@ import "./globals.css";
 import "../styles.css";
 import SiteFooter from "../components/SiteFooter";
 import BookCart from "../components/BookCart";
+import SiteNav from "../components/SiteNav";
 
 const anton = Anton({
   variable: "--font-anton",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${anton.variable} ${manrope.variable}`}>
+        <SiteNav />
         {children}
         <BookCart showTrigger={false} />
         <SiteFooter />

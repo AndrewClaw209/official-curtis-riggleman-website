@@ -118,12 +118,6 @@ export default function MediaPage() {
   return (
     <>
       <main className="media-page-main">
-        <a className="home-button media-home-button" href="/#top" aria-label="Home">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m3 10.8 9-7.3 9 7.3v9.2a1 1 0 0 1-1 1h-5.2v-6.4H9.2V21H4a1 1 0 0 1-1-1v-9.2Z" />
-          </svg>
-        </a>
-
         <img
           className="media-top-logo"
           src="/assets/logo-curtis-transparent.png"

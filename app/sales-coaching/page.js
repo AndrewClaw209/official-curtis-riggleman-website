@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const ghlSalesCoachingFormUrl =
   process.env.NEXT_PUBLIC_GHL_SALES_COACHING_FORM_URL ||
   "https://links.officialcurtisriggleman.com/widget/form/ZAA3ACp8Yq2p0LIBZgyL";
@@ -11,14 +9,6 @@ const curtisBio =
 export default function SalesCoachingPage() {
   return (
     <main className="sales-coaching-page">
-      <header className="sales-coaching-header">
-        <Link className="home-button" href="/#top" aria-label="Home">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m3 10.8 9-7.3 9 7.3v9.2a1 1 0 0 1-1 1h-5.2v-6.4H9.2V21H4a1 1 0 0 1-1-1v-9.2Z" />
-          </svg>
-        </Link>
-      </header>
-
       <section className="sales-coaching-hero">
         <p className="kicker">Sales Coaching With Curtis Riggleman</p>
         <h1>Build a Sales Team That Wins</h1>
