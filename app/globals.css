@@ -551,7 +551,7 @@ body:has(.media-page-main)::before { background: #000; }
 }
 
 .ru-ready-video-section {
-  padding: 1rem 0 clamp(5rem, 10vw, 8rem);
+  padding: 1rem 0 clamp(1.5rem, 3vw, 2.75rem);
 }
 
 .ru-ready-section-heading {
