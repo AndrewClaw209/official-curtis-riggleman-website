@@ -26,6 +26,8 @@ const ghlUniversityFormUrl =
   process.env.NEXT_PUBLIC_GHL_SALES_COACHING_FORM_URL ||
   "https://links.officialcurtisriggleman.com/widget/form/ZAA3ACp8Yq2p0LIBZgyL";
 
+const universityCheckoutUrl = "https://riggleman-university.circle.so/checkout/riggleman-university";
+
 export default function RigglemanUniversityPage() {
   return (
     <main className="riggleman-university-page">
@@ -49,7 +51,14 @@ export default function RigglemanUniversityPage() {
             A live online sales coaching program for people who want more confidence, more consistency, and more income from every opportunity.
           </p>
           <div className="university-actions" aria-label="Riggleman University next steps">
-            <a className="university-primary" href="#university-signup">Join the next class <span aria-hidden="true">↗</span></a>
+            <a
+              className="university-primary"
+              href={universityCheckoutUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Join the next class <span aria-hidden="true">↗</span>
+            </a>
             <a className="university-secondary" href="#university-curriculum">See what you&apos;ll learn <span aria-hidden="true">↓</span></a>
           </div>
         </div>
