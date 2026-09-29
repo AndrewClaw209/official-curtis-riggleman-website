@@ -68,6 +68,8 @@ export async function POST(request) {
     body.set("shipping_address_collection[allowed_countries][0]", "US");
     body.set("shipping_options[0][shipping_rate]", process.env.STRIPE_PHYSICAL_SHIPPING_RATE_ID);
   }
+  body.set("metadata[order_items]", JSON.stringify(items.map(({ slug, format, quantity }) => ({ slug, format, quantity }))));
+  body.set("metadata[has_physical_books]", String(hasPhysicalBooks));
   lineItems.forEach((item, index) => {
     body.set(`line_items[${index}][price]`, item.price);
     body.set(`line_items[${index}][quantity]`, String(item.quantity));
