@@ -82,7 +82,8 @@ body::before {
 .hero-shell {
   position: relative;
   z-index: 1;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   height: auto;
   min-height: 100svh;
   padding: 0 clamp(1rem, 2vw, 2rem) clamp(0.65rem, 1.5vh, 1.2rem);
@@ -314,7 +315,9 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: clamp(0.35rem, 0.8vw, 0.7rem);
-  width: min(1300px, calc(100vw - 1.3rem));
+  width: 100%;
+  max-width: 1300px;
+  min-width: 0;
   flex-wrap: wrap;
   margin: 0 auto;
   padding: 0.25rem 0.45rem calc(0.45rem + env(safe-area-inset-bottom));
