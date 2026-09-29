@@ -40,7 +40,7 @@ export async function POST(request) {
     const price = priceIds[format]?.[slug];
     const count = Number(quantity);
     if (!book || !["digital", "physical"].includes(format) || !price || !Number.isInteger(count) || count < 1 || count > 20) return null;
-    return { price, quantity: count };
+    return { price, quantity: count, format };
   });
 
   if (!lineItems.length || lineItems.length !== items.length) {
@@ -53,13 +53,21 @@ export async function POST(request) {
   } catch {
     return Response.json({ error: "Checkout site URL is not configured correctly." }, { status: 500 });
   }
+  const hasPhysicalBooks = lineItems.some((item) => item.format === "physical");
+  if (hasPhysicalBooks && !process.env.STRIPE_PHYSICAL_SHIPPING_RATE_ID) {
+    return Response.json({ error: "Physical-book shipping is not configured yet." }, { status: 503 });
+  }
+
   const body = new URLSearchParams({
     mode: "payment",
     success_url: `${origin}/training-courses?purchase=success`,
     cancel_url: `${origin}/training-courses?purchase=cancelled`,
-    "shipping_address_collection[allowed_countries][0]": "US",
     "automatic_tax[enabled]": "true"
   });
+  if (hasPhysicalBooks) {
+    body.set("shipping_address_collection[allowed_countries][0]", "US");
+    body.set("shipping_options[0][shipping_rate]", process.env.STRIPE_PHYSICAL_SHIPPING_RATE_ID);
+  }
   lineItems.forEach((item, index) => {
     body.set(`line_items[${index}][price]`, item.price);
     body.set(`line_items[${index}][quantity]`, String(item.quantity));

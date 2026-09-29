@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 const CART_KEY = "curtis-book-cart";
 const CART_EVENT = "curtis-book-cart-updated";
 const CART_OPEN_EVENT = "curtis-book-cart-open";
-const PRICES = { digital: 19, physical: 29 };
+const PRICES = { digital: 19.95, physical: 29.95 };
+const PHYSICAL_SHIPPING = 11.95;
 const FORMAT_LABELS = { digital: "Digital Edition", physical: "Physical Book" };
 
 function readCart() {
@@ -89,7 +90,9 @@ export default function BookCart({ book, showTrigger = true }) {
   };
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-  const cartTotal = cart.reduce((total, item) => total + item.quantity * PRICES[item.format], 0);
+  const bookSubtotal = cart.reduce((total, item) => total + item.quantity * PRICES[item.format], 0);
+  const hasPhysicalBooks = cart.some((item) => item.format === "physical");
+  const cartTotal = bookSubtotal + (hasPhysicalBooks ? PHYSICAL_SHIPPING : 0);
   const normalizedPathname = pathname?.replace(/\/$/, "") || "";
   const canShowCartTrigger = ["/training-courses", "/merch"].includes(normalizedPathname);
 
@@ -101,8 +104,8 @@ export default function BookCart({ book, showTrigger = true }) {
         </button>
         {isChoosingFormat && <div className="book-purchase-options" role="dialog" aria-label={`Choose an edition of ${book.title}`}>
           <p>Choose your edition</p>
-          <button type="button" onClick={() => addToCart("digital")}><span><strong>Digital</strong><small>Instant access</small></span><b>$19</b></button>
-          <button type="button" onClick={() => addToCart("physical")}><span><strong>Physical</strong><small>Ships to you</small></span><b>$29</b></button>
+          <button type="button" onClick={() => addToCart("digital")}><span><strong>Digital</strong><small>Instant access</small></span><b>$19.95</b></button>
+          <button type="button" onClick={() => addToCart("physical")}><span><strong>Physical</strong><small>Ships to you + $11.95 shipping</small></span><b>$29.95</b></button>
         </div>}
       </div> : null}
       {!book && canShowCartTrigger ? <button className="cart-trigger" type="button" onClick={() => setIsOpen(true)} aria-label={`Open shopping cart, ${cartCount} items`}>
@@ -117,11 +120,12 @@ export default function BookCart({ book, showTrigger = true }) {
           {cart.length === 0 ? <p>Your cart is empty.</p> : <>
             <div className="book-cart-items">
               {cart.map((item) => <div className="book-cart-item" key={`${item.slug}-${item.format}`}>
-                <div><strong>{item.title}</strong><small>{FORMAT_LABELS[item.format]} · ${PRICES[item.format]} each</small></div>
+                <div><strong>{item.title}</strong><small>{FORMAT_LABELS[item.format]} · ${PRICES[item.format].toFixed(2)} each</small></div>
                 <div className="book-cart-quantity"><label>Qty <input type="number" min="0" max="20" value={item.quantity} onChange={(event) => updateQuantity(item.slug, item.format, event.target.value)} /></label><strong>${(item.quantity * PRICES[item.format]).toFixed(2)}</strong></div>
               </div>)}
             </div>
             <div className="book-cart-total"><span>Total</span><strong>${cartTotal.toFixed(2)}</strong></div>
+            {hasPhysicalBooks ? <p className="book-cart-note">Physical-book shipping: ${PHYSICAL_SHIPPING.toFixed(2)} per order.</p> : null}
             <p className="book-cart-note">Secure payment for your books will be completed through Stripe Checkout.</p>
             <button className="btn btn-gold" type="button" onClick={checkout} disabled={isCheckingOut}>{isCheckingOut ? "Opening checkout…" : "Continue to Checkout →"}</button>
             {error && <p className="book-cart-error" role="alert">{error}</p>}
