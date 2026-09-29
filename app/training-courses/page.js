@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { books } from "./books";
 import BookCart from "../../components/BookCart";
+import PurchaseStatus from "../../components/PurchaseStatus";
 
 export const metadata = {
   title: "Training Courses | Curtis Riggleman",
@@ -16,6 +17,8 @@ export default function TrainingCoursesPage() {
         <h1>Training That <span>Moves The Needle</span></h1>
         <p>Practical sales and leadership systems built from years of real-world dealership experience. Choose a book and start building a stronger team.</p>
       </section>
+
+      <PurchaseStatus />
 
       <section className="book-grid" aria-label="Curtis Riggleman books">
         {books.map((book) => (
