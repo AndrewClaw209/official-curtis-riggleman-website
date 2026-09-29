@@ -51,7 +51,7 @@ export default function BookDetail({ book }) {
         <div className="book-carousel-track" ref={carouselRef} tabIndex="0">
           {books.map((item) => <Link className={`book-carousel-card${item.slug === book.slug ? " is-current" : ""}`} href={`/training-courses/${item.slug}`} key={item.slug} aria-label={`Open ${item.title}`}>
             <div className="book-carousel-cover"><Image src={item.image} alt="" width={1390} height={2218} /></div>
-            <div><p className="kicker">{item.slug === book.slug ? "You are here" : "Training book"}</p><h3>{item.title}</h3><span>View book <span aria-hidden="true">→</span></span></div>
+            <div><h3>{item.title}</h3><span>View book <span aria-hidden="true">→</span></span></div>
           </Link>)}
         </div>
       </section>
