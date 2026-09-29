@@ -355,6 +355,15 @@ body::before {
   outline-offset: 3px;
 }
 
+.webinar-modal { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 1rem; }
+.webinar-modal-backdrop { position: absolute; inset: 0; border: 0; background: rgba(0, 0, 0, .86); cursor: pointer; }
+.webinar-modal-panel { position: relative; width: min(430px, 100%); max-height: calc(100dvh - 2rem); overflow: auto; border: 1px solid rgba(242, 205, 127, .55); border-radius: 1rem; background: #050608; box-shadow: 0 30px 100px rgba(0, 0, 0, .75); }
+.webinar-modal-close { position: absolute; top: .35rem; right: .55rem; z-index: 1; width: 2.4rem; height: 2.4rem; border: 1px solid rgba(255, 255, 255, .75); border-radius: 50%; color: #fff; background: rgba(0, 0, 0, .7); font-size: 1.8rem; line-height: 1; cursor: pointer; }
+.webinar-modal-close:hover, .webinar-modal-close:focus-visible { color: #17120a; background: var(--gold); }
+.webinar-modal-cta { display: block; line-height: 0; }
+.webinar-modal-cta img { display: block; width: 100%; height: auto; max-height: calc(100dvh - 2rem); object-fit: contain; }
+body.webinar-modal-open { overflow: hidden; }
+
 .sr-only {
   position: absolute;
   width: 1px;

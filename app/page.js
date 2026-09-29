@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RevealOnScroll from "../components/RevealOnScroll";
 
 const socialLinks = [
@@ -117,6 +117,27 @@ function SocialIcon({ type }) {
 
 export default function Home() {
   const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isWebinarModalOpen, setIsWebinarModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsWebinarModalOpen(true), 2000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isWebinarModalOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsWebinarModalOpen(false);
+    };
+
+    document.body.classList.add("webinar-modal-open");
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.classList.remove("webinar-modal-open");
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isWebinarModalOpen]);
 
   return (
     <>
@@ -174,6 +195,18 @@ export default function Home() {
 
         </div>
       </header>
+
+      {isWebinarModalOpen && (
+        <div className="webinar-modal" role="dialog" aria-modal="true" aria-label="Free live webinar invitation">
+          <button className="webinar-modal-backdrop" type="button" aria-label="Close webinar invitation" onClick={() => setIsWebinarModalOpen(false)} />
+          <div className="webinar-modal-panel">
+            <button className="webinar-modal-close" type="button" aria-label="Close webinar invitation" onClick={() => setIsWebinarModalOpen(false)}>×</button>
+            <a className="webinar-modal-cta" href="https://www.curtisrigglemantraining.com/sign-up-957998" aria-label="Sign up for Curtis Riggleman's free live webinar">
+              <Image src="/live-webinar-training.png" alt="Train with Curtis Riggleman for free on his live webinar" width={1024} height={1536} priority />
+            </a>
+          </div>
+        </div>
+      )}
 
       <aside className="sticky-video" aria-label="Featured Curtis video">
         <video
