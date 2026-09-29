@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RevealOnScroll from "../components/RevealOnScroll";
 
 const socialLinks = [
@@ -118,6 +118,7 @@ function SocialIcon({ type }) {
 export default function Home() {
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const [isWebinarModalOpen, setIsWebinarModalOpen] = useState(false);
+  const webinarCloseRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsWebinarModalOpen(true), 2000);
@@ -132,6 +133,7 @@ export default function Home() {
     };
 
     document.body.classList.add("webinar-modal-open");
+    webinarCloseRef.current?.focus();
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.classList.remove("webinar-modal-open");
@@ -140,7 +142,7 @@ export default function Home() {
   }, [isWebinarModalOpen]);
 
   return (
-    <>
+    <main id="main-content">
       <RevealOnScroll />
       <header className="hero" id="top">
         <div className="hero-shell">
@@ -200,7 +202,7 @@ export default function Home() {
         <div className="webinar-modal" role="dialog" aria-modal="true" aria-label="Free live webinar invitation">
           <button className="webinar-modal-backdrop" type="button" aria-label="Close webinar invitation" onClick={() => setIsWebinarModalOpen(false)} />
           <div className="webinar-modal-panel">
-            <button className="webinar-modal-close" type="button" aria-label="Close webinar invitation" onClick={() => setIsWebinarModalOpen(false)}>×</button>
+            <button ref={webinarCloseRef} className="webinar-modal-close" type="button" aria-label="Close webinar invitation" onClick={() => setIsWebinarModalOpen(false)}>×</button>
             <a className="webinar-modal-cta" href="https://www.curtisrigglemantraining.com/sign-up-957998" aria-label="Sign up for Curtis Riggleman's free live webinar">
               <Image src="/live-webinar-training.png" alt="Train with Curtis Riggleman for free on his live webinar" width={1024} height={1536} priority />
             </a>
@@ -227,6 +229,6 @@ export default function Home() {
           {isVideoMuted ? "🔇 Unmute" : "🔊 Mute"}
         </button>
       </aside>
-    </>
+    </main>
   );
 }

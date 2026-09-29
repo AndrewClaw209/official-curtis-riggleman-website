@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ghlTestimonyFormUrl =
   process.env.NEXT_PUBLIC_GHL_TESTIMONY_FORM_URL ||
@@ -83,6 +83,7 @@ function Initials({ name }) {
 
 export default function TestimoniesPage() {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+  const callModalCloseRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsCallModalOpen(true), 20000);
@@ -97,6 +98,7 @@ export default function TestimoniesPage() {
     };
 
     document.body.classList.add("testimony-call-modal-open");
+    callModalCloseRef.current?.focus();
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.classList.remove("testimony-call-modal-open");
@@ -105,7 +107,7 @@ export default function TestimoniesPage() {
   }, [isCallModalOpen]);
 
   return (
-    <main className="testimonies-page">
+    <main id="main-content" className="testimonies-page">
       <section className="testimonies-hero">
         <p className="kicker">Real Results</p>
         <h1>Success Stories</h1>
@@ -139,6 +141,7 @@ export default function TestimoniesPage() {
           />
           <div className="testimony-call-modal-panel">
             <button
+              ref={callModalCloseRef}
               className="testimony-call-modal-close"
               type="button"
               onClick={() => setIsCallModalOpen(false)}

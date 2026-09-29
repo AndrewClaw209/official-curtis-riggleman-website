@@ -48,6 +48,8 @@ export default function MediaPage() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isAppearanceModalOpen, setIsAppearanceModalOpen] = useState(false);
   const carouselViewportRef = useRef(null);
+  const bookingCloseRef = useRef(null);
+  const appearanceCloseRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsAppearanceModalOpen(true), 20000);
@@ -108,6 +110,7 @@ export default function MediaPage() {
     };
 
     document.body.classList.add("media-modal-open");
+    bookingCloseRef.current?.focus();
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.classList.remove("media-modal-open");
@@ -123,6 +126,7 @@ export default function MediaPage() {
     };
 
     document.body.classList.add("media-modal-open");
+    appearanceCloseRef.current?.focus();
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.classList.remove("media-modal-open");
@@ -132,7 +136,7 @@ export default function MediaPage() {
 
   return (
     <>
-      <main className="media-page-main">
+      <main id="main-content" className="media-page-main">
         <img
           className="media-top-logo"
           src="/assets/logo-curtis-ai.png"
@@ -195,9 +199,9 @@ export default function MediaPage() {
 
       {isBookingModalOpen ? (
         <div className="media-book-modal" role="dialog" aria-modal="true" aria-label="Podcast booking form">
-          <div className="media-book-modal-backdrop" onClick={() => setIsBookingModalOpen(false)} />
+          <button type="button" className="media-book-modal-backdrop" aria-label="Close booking form" onClick={() => setIsBookingModalOpen(false)} />
           <div className="media-book-modal-panel">
-            <button type="button" className="media-book-modal-close" onClick={() => setIsBookingModalOpen(false)} aria-label="Close booking form">
+            <button ref={bookingCloseRef} type="button" className="media-book-modal-close" onClick={() => setIsBookingModalOpen(false)} aria-label="Close booking form">
               ×
             </button>
             <p className="kicker">Podcast Booking Form</p>
@@ -225,6 +229,7 @@ export default function MediaPage() {
           <div className="media-appearance-modal-panel">
             <button
               type="button"
+              ref={appearanceCloseRef}
               className="media-appearance-modal-close"
               onClick={() => setIsAppearanceModalOpen(false)}
               aria-label="Close"

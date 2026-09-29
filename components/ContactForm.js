@@ -32,7 +32,6 @@ export default function ContactForm() {
 
     const payload = new FormData();
     payload.append("_subject", "New website lead form submission");
-    payload.append("_captcha", "false");
     payload.append("_honey", "");
     payload.append("name", formValues.name);
     payload.append("email", formValues.email);
@@ -76,51 +75,60 @@ export default function ContactForm() {
   return (
     <>
       <form className="contact-form" onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="contact-name">
           Full Name
           <input
+            id="contact-name"
             type="text"
             name="name"
+            autoComplete="name"
             value={formValues.name}
             onChange={handleChange}
             required
             disabled={status === "sending"}
           />
         </label>
-        <label>
+        <label htmlFor="contact-email">
           Email Address
           <input
+            id="contact-email"
             type="email"
             name="email"
+            autoComplete="email"
             value={formValues.email}
             onChange={handleChange}
             required
             disabled={status === "sending"}
           />
         </label>
-        <label>
+        <label htmlFor="contact-phone">
           Phone Number
           <input
+            id="contact-phone"
             type="tel"
             name="phone"
+            autoComplete="tel"
             value={formValues.phone}
             onChange={handleChange}
             disabled={status === "sending"}
           />
         </label>
-        <label>
+        <label htmlFor="contact-company">
           Dealership / Company
           <input
+            id="contact-company"
             type="text"
             name="company"
+            autoComplete="organization"
             value={formValues.company}
             onChange={handleChange}
             disabled={status === "sending"}
           />
         </label>
-        <label className="contact-form-wide">
+        <label className="contact-form-wide" htmlFor="contact-message">
           Message
           <textarea
+            id="contact-message"
             name="message"
             rows={5}
             value={formValues.message}

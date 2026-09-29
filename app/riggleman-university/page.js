@@ -30,7 +30,7 @@ const universityCheckoutUrl = "https://riggleman-university.circle.so/checkout/r
 
 export default function RigglemanUniversityPage() {
   return (
-    <main className="riggleman-university-page">
+    <main id="main-content" className="riggleman-university-page">
       <section className="university-video-section" aria-labelledby="university-video-title">
         <div className="university-video-shell">
           <video

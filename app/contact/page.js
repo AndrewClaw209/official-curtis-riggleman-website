@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="contact-page">
+    <main id="main-content" className="contact-page">
       <section className="contact-hero" aria-labelledby="contact-title">
         <div className="contact-hero-copy">
           <p className="kicker">Let&apos;s build what&apos;s next</p>

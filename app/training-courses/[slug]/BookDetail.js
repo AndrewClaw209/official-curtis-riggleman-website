@@ -13,6 +13,7 @@ const ghlBookCopyFormUrl =
 export default function BookDetail({ book }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const carouselRef = useRef(null);
+  const formCloseRef = useRef(null);
 
   const scrollBooks = (direction) => {
     carouselRef.current?.scrollBy({ left: direction * 300, behavior: "smooth" });
@@ -25,11 +26,12 @@ export default function BookDetail({ book }) {
 
   useEffect(() => {
     document.body.classList.toggle("book-modal-open", isFormOpen);
+    if (isFormOpen) formCloseRef.current?.focus();
     return () => document.body.classList.remove("book-modal-open");
   }, [isFormOpen]);
 
   return (
-    <main className="book-detail-page">
+    <main id="main-content" className="book-detail-page">
       <section className="detail-hero">
         <p className="kicker">Curtis Riggleman Training</p>
         <h1>{book.title}</h1>
@@ -55,7 +57,7 @@ export default function BookDetail({ book }) {
           </Link>)}
         </div>
       </section>
-      {isFormOpen && <div className="book-modal" role="dialog" aria-modal="true" aria-labelledby="shipping-title"><button className="book-modal-backdrop" aria-label="Close shipping form" onClick={() => setIsFormOpen(false)} /><div className="book-modal-panel"><button className="book-modal-close" type="button" onClick={() => setIsFormOpen(false)} aria-label="Close">×</button><p className="kicker">Get your copy</p><h2 id="shipping-title">Where should we ship your book?</h2><p>Request a copy of <strong>{book.title}</strong> and leave your shipping details below.</p><iframe className="book-copy-form" src={ghlBookCopyFormUrl} title={`Request a copy of ${book.title}`} loading="lazy" style={{ height: "1127px" }} /></div></div>}
+      {isFormOpen && <div className="book-modal" role="dialog" aria-modal="true" aria-labelledby="shipping-title"><button className="book-modal-backdrop" type="button" aria-label="Close shipping form" onClick={() => setIsFormOpen(false)} /><div className="book-modal-panel"><button ref={formCloseRef} className="book-modal-close" type="button" onClick={() => setIsFormOpen(false)} aria-label="Close">×</button><p className="kicker">Get your copy</p><h2 id="shipping-title">Where should we ship your book?</h2><p>Request a copy of <strong>{book.title}</strong> and leave your shipping details below.</p><iframe className="book-copy-form" src={ghlBookCopyFormUrl} title={`Request a copy of ${book.title}`} loading="lazy" style={{ height: "1127px" }} /></div></div>}
     </main>
   );
 }

@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function TrainingCoursesPage() {
   return (
-    <main className="training-page">
+    <main id="main-content" className="training-page">
       <section className="training-intro">
         <p className="kicker">The Curtis Riggleman Library</p>
         <h1>Training That <span>Moves The Needle</span></h1>

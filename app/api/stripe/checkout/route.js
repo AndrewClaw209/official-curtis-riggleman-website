@@ -22,8 +22,20 @@ export async function POST(request) {
     return Response.json({ error: "Stripe checkout is not configured yet." }, { status: 503 });
   }
 
-  const { items = [] } = await request.json();
-  const lineItems = items.map(({ slug, format = "digital", quantity }) => {
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return Response.json({ error: "Invalid checkout request." }, { status: 400 });
+  }
+
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  if (items.length > 20) {
+    return Response.json({ error: "Too many items in checkout." }, { status: 400 });
+  }
+
+  const lineItems = items.map((item) => {
+    const { slug, format = "digital", quantity } = item && typeof item === "object" ? item : {};
     const book = getBook(slug);
     const price = priceIds[format]?.[slug];
     const count = Number(quantity);
@@ -35,7 +47,12 @@ export async function POST(request) {
     return Response.json({ error: "One or more books are not available for purchase yet." }, { status: 400 });
   }
 
-  const origin = request.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL;
+  let origin;
+  try {
+    origin = new URL(process.env.NEXT_PUBLIC_SITE_URL || request.url).origin;
+  } catch {
+    return Response.json({ error: "Checkout site URL is not configured correctly." }, { status: 500 });
+  }
   const body = new URLSearchParams({
     mode: "payment",
     success_url: `${origin}/training-courses?purchase=success`,
@@ -48,14 +65,20 @@ export async function POST(request) {
     body.set(`line_items[${index}][quantity]`, String(item.quantity));
   });
 
-  const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`,
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body
-  });
+  let stripeResponse;
+  try {
+    stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body,
+      signal: AbortSignal.timeout(10000)
+    });
+  } catch {
+    return Response.json({ error: "Stripe checkout is temporarily unavailable." }, { status: 502 });
+  }
   const session = await stripeResponse.json();
   if (!stripeResponse.ok) return Response.json({ error: session.error?.message || "Stripe checkout failed." }, { status: 502 });
   return Response.json({ url: session.url });

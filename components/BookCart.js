@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const CART_KEY = "curtis-book-cart";
@@ -32,6 +32,7 @@ export default function BookCart({ book, showTrigger = true }) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState("");
   const [isChoosingFormat, setIsChoosingFormat] = useState(false);
+  const cartCloseRef = useRef(null);
 
   useEffect(() => {
     const sync = () => setCart(readCart());
@@ -44,6 +45,10 @@ export default function BookCart({ book, showTrigger = true }) {
       window.removeEventListener(CART_OPEN_EVENT, openCart);
     };
   }, []);
+
+  useEffect(() => {
+    if (isOpen) cartCloseRef.current?.focus();
+  }, [isOpen]);
 
   const addToCart = (format) => {
     const next = [...cart];
@@ -107,7 +112,7 @@ export default function BookCart({ book, showTrigger = true }) {
       {!book && isOpen && <div className="book-cart" role="dialog" aria-modal="true" aria-labelledby="book-cart-title">
         <button className="book-cart-backdrop" type="button" aria-label="Close cart" onClick={() => setIsOpen(false)} />
         <div className="book-cart-panel">
-          <button className="book-cart-close" type="button" onClick={() => setIsOpen(false)} aria-label="Close cart">×</button>
+          <button ref={cartCloseRef} className="book-cart-close" type="button" onClick={() => setIsOpen(false)} aria-label="Close cart">×</button>
           <p className="kicker">Your cart</p><h2 id="book-cart-title">Get Curtis&apos; books</h2>
           {cart.length === 0 ? <p>Your cart is empty.</p> : <>
             <div className="book-cart-items">

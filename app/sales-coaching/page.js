@@ -37,7 +37,7 @@ const platformModules = [
 
 export default function SalesCoachingPage() {
   return (
-    <main className="sales-coaching-page">
+    <main id="main-content" className="sales-coaching-page">
       <section className="ru-ready-video-section ru-ready-video-first" aria-labelledby="ru-ready-video-title">
         <div className="sales-coaching-video">
           <video
