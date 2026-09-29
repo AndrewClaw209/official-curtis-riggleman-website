@@ -918,8 +918,8 @@ body:has(.contact-page)::before { background: #000; }
 }
 
 .sales-coaching-video {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  width: min(100%, 430px);
+  aspect-ratio: 9 / 16;
   margin: 0 auto;
   overflow: hidden;
   border: 1px solid rgba(242, 205, 127, .32);
@@ -935,6 +935,8 @@ body:has(.contact-page)::before { background: #000; }
   height: 100%;
   border: 0;
 }
+
+.sales-coaching-video video { object-fit: contain; }
 
 .ru-ready-problem {
   max-width: 820px;
