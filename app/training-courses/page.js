@@ -5,8 +5,14 @@ import BookCart from "../../components/BookCart";
 import PurchaseStatus from "../../components/PurchaseStatus";
 
 export const metadata = {
-  title: "Training Courses | Curtis Riggleman",
-  description: "Explore Curtis Riggleman's sales and leadership training books."
+  title: "Training Courses",
+  description: "Explore Curtis Riggleman's practical sales, closing, leadership, objection-handling, and dealership training books.",
+  alternates: { canonical: "/training-courses" },
+  openGraph: {
+    title: "Sales Training Books | Curtis Riggleman",
+    description: "Practical sales and leadership books built from real dealership experience.",
+    url: "/training-courses"
+  }
 };
 
 export default function TrainingCoursesPage() {

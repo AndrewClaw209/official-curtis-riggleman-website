@@ -32,6 +32,38 @@ export default function BookDetail({ book }) {
 
   return (
     <main id="main-content" className="book-detail-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Book",
+            name: book.title,
+            description: book.description,
+            image: `https://officialcurtisriggleman.com${book.image}`,
+            url: `https://officialcurtisriggleman.com/training-courses/${book.slug}`,
+            author: {
+              "@type": "Person",
+              name: "Curtis Riggleman",
+              url: "https://officialcurtisriggleman.com/"
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Official Curtis Riggleman",
+              url: "https://officialcurtisriggleman.com/"
+            },
+            offers: {
+              "@type": "AggregateOffer",
+              priceCurrency: "USD",
+              lowPrice: "19.95",
+              highPrice: "29.95",
+              offerCount: 2,
+              availability: "https://schema.org/InStock",
+              url: `https://officialcurtisriggleman.com/training-courses/${book.slug}`
+            }
+          })
+        }}
+      />
       <section className="detail-hero">
         <p className="kicker">Curtis Riggleman Training</p>
         <h1>{book.title}</h1>

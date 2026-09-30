@@ -28,6 +28,17 @@ const ghlUniversityFormUrl =
 
 const universityCheckoutUrl = "https://riggleman-university.circle.so/checkout/riggleman-university";
 
+export const metadata = {
+  title: "Riggleman University | Live Sales Coaching",
+  description: "Join Curtis Riggleman's live online sales coaching program for practical technique, role-play, accountability, and better performance.",
+  alternates: { canonical: "/riggleman-university" },
+  openGraph: {
+    title: "Riggleman University | Live Sales Coaching",
+    description: "A live online sales coaching program built for confidence, consistency, and income.",
+    url: "/riggleman-university"
+  }
+};
+
 export default function RigglemanUniversityPage() {
   return (
     <main id="main-content" className="riggleman-university-page">

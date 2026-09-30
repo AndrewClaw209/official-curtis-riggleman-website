@@ -2,8 +2,14 @@ import Image from "next/image";
 import ContactForm from "../../components/ContactForm";
 
 export const metadata = {
-  title: "Get in Touch | Official Curtis Riggleman",
-  description: "Connect with Curtis Riggleman about sales coaching, speaking, and training."
+  title: "Get in Touch",
+  description: "Connect with Curtis Riggleman about dealership sales coaching, leadership training, speaking, and team development.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Get in Touch with Curtis Riggleman",
+    description: "Start a conversation about sales coaching, leadership training, speaking, and dealership team development.",
+    url: "/contact"
+  }
 };
 
 export default function ContactPage() {

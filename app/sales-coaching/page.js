@@ -35,6 +35,17 @@ const platformModules = [
   }
 ];
 
+export const metadata = {
+  title: "R U Ready Sales Coaching Platform",
+  description: "Prepare dealership sales teams with AI-assisted onboarding, phone skills, objection handling, internet leads, social selling, and closing training.",
+  alternates: { canonical: "/sales-coaching" },
+  openGraph: {
+    title: "R U Ready Sales Coaching Platform",
+    description: "A practical coaching platform that helps dealership sales teams get ready before the next customer walks in.",
+    url: "/sales-coaching"
+  }
+};
+
 export default function SalesCoachingPage() {
   return (
     <main id="main-content" className="sales-coaching-page">

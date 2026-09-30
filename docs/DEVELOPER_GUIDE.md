@@ -336,3 +336,19 @@ Common failures:
 6. Version-control GHL workflow exports or create a documented backup process.
 7. Add monitoring for failed GHL forwarding.
 8. Consider single-use or customer-bound downloads if seven-day bearer links are not sufficient.
+
+## 14. SEO implementation
+
+The root metadata in `app/layout.js` provides the canonical production URL, title template, default description, Open Graph image, Twitter card, index/follow directives, and organization/person/website JSON-LD. Segment metadata adds page-specific titles, descriptions, canonicals, and social previews for media and testimonials. Book detail pages generate metadata and Book structured data from the catalog.
+
+`app/sitemap.js` publishes the homepage, conversion pages, content pages, and every customer-facing book route. `app/robots.js` allows public pages, points crawlers to `/sitemap.xml`, and excludes API routes from indexing.
+
+When adding or renaming a public page:
+
+1. Add a canonical URL and unique, accurate title/description.
+2. Add it to `app/sitemap.js` if it should be discoverable.
+3. Make sure the page has one meaningful `<h1>`, descriptive link text, image alt text, and a crawlable internal link.
+4. Add or update Open Graph metadata when the page has a distinct campaign or offer.
+5. Avoid indexing transactional endpoints, temporary download URLs, or duplicate query-string variants.
+
+SEO claims should match visible page content. Do not add keyword-heavy text, fake reviews, or structured data for offers that are not actually available.

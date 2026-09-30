@@ -143,6 +143,7 @@ export default function Home() {
 
   return (
     <main id="main-content">
+      <h1 className="sr-only">Curtis Riggleman Sales Training and Dealership Leadership Coaching</h1>
       <RevealOnScroll />
       <header className="hero" id="top">
         <div className="hero-shell">
