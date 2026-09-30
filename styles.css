@@ -299,7 +299,9 @@ body.scrolled .hero-gate {
 
 .blog-page,
 .blog-post-page {
-  background: #0d0d0d;
+  position: relative;
+  z-index: 1;
+  background: #151515;
   color: #fff8e8;
 }
 
@@ -362,7 +364,7 @@ body.scrolled .hero-gate {
 
 .blog-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 1.25rem;
 }
 
@@ -372,7 +374,8 @@ body.scrolled .hero-gate {
   flex-direction: column;
   padding: 2rem;
   border: 1px solid #6f410d;
-  background: #171717;
+  background: #242424;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
 }
 
 .blog-card-category,
@@ -408,7 +411,7 @@ body.scrolled .hero-gate {
 }
 
 .blog-card > p:not(.blog-card-category) {
-  color: #d8cbb4;
+  color: #f0e6d5;
   line-height: 1.65;
 }
 
