@@ -18,7 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://officialcurtisriggleman.com"),
+  metadataBase: new URL("https://www.officialcurtisriggleman.com"),
   title: {
     default: "Official Curtis Riggleman | Sales Training & Leadership",
     template: "%s | Official Curtis Riggleman"
@@ -79,10 +79,10 @@ export default function RootLayout({ children }) {
               "@graph": [
                 {
                   "@type": "Person",
-                  "@id": "https://officialcurtisriggleman.com/#curtis-riggleman",
+                  "@id": "https://www.officialcurtisriggleman.com/#curtis-riggleman",
                   name: "Curtis Riggleman",
-                  url: "https://officialcurtisriggleman.com/",
-                  image: "https://officialcurtisriggleman.com/assets/curtis-contact.png",
+                  url: "https://www.officialcurtisriggleman.com/",
+                  image: "https://www.officialcurtisriggleman.com/assets/curtis-contact.png",
                   jobTitle: "Sales Trainer and Leadership Coach",
                   sameAs: [
                     "https://www.instagram.com/officialcurtisriggleman/",
@@ -100,11 +100,11 @@ export default function RootLayout({ children }) {
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://officialcurtisriggleman.com/#website",
-                  url: "https://officialcurtisriggleman.com/",
+                  "@id": "https://www.officialcurtisriggleman.com/#website",
+                  url: "https://www.officialcurtisriggleman.com/",
                   name: "Official Curtis Riggleman",
                   description: "Sales training and leadership development for dealership teams.",
-                  publisher: { "@id": "https://officialcurtisriggleman.com/#curtis-riggleman" }
+                  publisher: { "@id": "https://www.officialcurtisriggleman.com/#curtis-riggleman" }
                 }
               ]
             })

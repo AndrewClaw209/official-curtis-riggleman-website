@@ -40,17 +40,17 @@ export default function BookDetail({ book }) {
             "@type": "Book",
             name: book.title,
             description: book.description,
-            image: `https://officialcurtisriggleman.com${book.image}`,
-            url: `https://officialcurtisriggleman.com/training-courses/${book.slug}`,
+            image: `https://www.officialcurtisriggleman.com${book.image}`,
+            url: `https://www.officialcurtisriggleman.com/training-courses/${book.slug}`,
             author: {
               "@type": "Person",
               name: "Curtis Riggleman",
-              url: "https://officialcurtisriggleman.com/"
+              url: "https://www.officialcurtisriggleman.com/"
             },
             publisher: {
               "@type": "Organization",
               name: "Official Curtis Riggleman",
-              url: "https://officialcurtisriggleman.com/"
+              url: "https://www.officialcurtisriggleman.com/"
             },
             offers: {
               "@type": "AggregateOffer",
@@ -59,7 +59,7 @@ export default function BookDetail({ book }) {
               highPrice: "29.95",
               offerCount: 2,
               availability: "https://schema.org/InStock",
-              url: `https://officialcurtisriggleman.com/training-courses/${book.slug}`
+              url: `https://www.officialcurtisriggleman.com/training-courses/${book.slug}`
             }
           })
         }}
