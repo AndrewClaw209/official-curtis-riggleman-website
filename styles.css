@@ -301,6 +301,8 @@ body.scrolled .hero-gate {
 .blog-post-page {
   position: relative;
   z-index: 1;
+  width: 100%;
+  margin: 0;
   background: #151515;
   color: #fff8e8;
 }
