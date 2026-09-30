@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 const SIGNATURE_TOLERANCE_SECONDS = 300;
+const DOWNLOAD_LIFETIME_SECONDS = 7 * 24 * 60 * 60;
 const DIGITAL_DOWNLOADS = {
   "closing-101": "/downloads/closing-101.pdf",
   "built-to-lead-mindset-principles": "/downloads/built-to-lead-mindset-principles.pdf",
@@ -45,12 +46,24 @@ function parseOrderItems(value) {
   }
 }
 
+function createDownloadToken(slug, expiresAt) {
+  const secret = process.env.DIGITAL_DOWNLOAD_SECRET;
+  if (!secret) return null;
+  const payload = `${slug}.${expiresAt}`;
+  const signature = createHmac("sha256", secret).update(payload).digest("base64url");
+  return Buffer.from(`${payload}.${signature}`).toString("base64url");
+}
+
 function addDownloadLinks(items) {
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://officialcurtisriggleman.com").replace(/\/$/, "");
+  const expiresAt = Math.floor(Date.now() / 1000) + DOWNLOAD_LIFETIME_SECONDS;
   return items.map((item) => ({
     ...item,
     ...(item.format === "digital" && DIGITAL_DOWNLOADS[item.slug]
-      ? { downloadUrl: `${siteUrl}${DIGITAL_DOWNLOADS[item.slug]}` }
+      ? (() => {
+          const token = createDownloadToken(item.slug, expiresAt);
+          return token ? { downloadUrl: `${siteUrl}/api/download/${item.slug}?token=${encodeURIComponent(token)}`, downloadExpiresAt: new Date(expiresAt * 1000).toISOString() } : {};
+        })()
       : {})
   }));
 }
@@ -99,6 +112,7 @@ export async function POST(request) {
       shippingAddress: session.shipping_details?.address || session.customer_details?.address || null,
       items,
       digitalDownloadLinks: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl }) => ({ slug, downloadUrl })),
+      digitalDownloadLinksText: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl, downloadExpiresAt }) => `${slug}: ${downloadUrl} (expires ${downloadExpiresAt})`).join("\n"),
       hasPhysicalBooks: session.metadata?.has_physical_books === "true",
       receivedAt: new Date().toISOString()
     };
