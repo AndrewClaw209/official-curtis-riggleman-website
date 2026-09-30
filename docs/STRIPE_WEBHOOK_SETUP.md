@@ -20,3 +20,5 @@ The webhook verifies Stripe's signature and records a structured fulfillment rec
 ## GoHighLevel order automation
 
 Create a GoHighLevel workflow with an inbound webhook trigger, then add its webhook URL to Vercel Production as `GOHIGHLEVEL_ORDER_WEBHOOK_URL`. The Stripe webhook forwards the event/session IDs, payment status, customer details, shipping address, and order items. The workflow can then notify the team, create a fulfillment task, and send customer follow-up messages.
+
+Digital book orders also include a `downloadUrl` on each digital item and a `digitalDownloadLinks` list. These are stable, non-expiring PDF links under `/downloads/`. They are intentionally convenient rather than access-controlled; anyone with a forwarded link can download the file.

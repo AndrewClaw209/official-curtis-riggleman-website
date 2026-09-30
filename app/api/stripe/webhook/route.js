@@ -1,6 +1,14 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 const SIGNATURE_TOLERANCE_SECONDS = 300;
+const DIGITAL_DOWNLOADS = {
+  "closing-101": "/downloads/closing-101.pdf",
+  "built-to-lead-mindset-principles": "/downloads/built-to-lead-mindset-principles.pdf",
+  "the-first-five": "/downloads/the-first-five.pdf",
+  "objections-arent-real": "/downloads/objections-arent-real.pdf",
+  "dial-for-dollars": "/downloads/dial-for-dollars.pdf",
+  "the-road-to-the-sale": "/downloads/the-road-to-the-sale.pdf"
+};
 
 function isValidStripeSignature(rawBody, signatureHeader, webhookSecret) {
   if (!signatureHeader) return false;
@@ -37,6 +45,16 @@ function parseOrderItems(value) {
   }
 }
 
+function addDownloadLinks(items) {
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://officialcurtisriggleman.com").replace(/\/$/, "");
+  return items.map((item) => ({
+    ...item,
+    ...(item.format === "digital" && DIGITAL_DOWNLOADS[item.slug]
+      ? { downloadUrl: `${siteUrl}${DIGITAL_DOWNLOADS[item.slug]}` }
+      : {})
+  }));
+}
+
 async function forwardOrderToGoHighLevel(order) {
   const webhookUrl = process.env.GOHIGHLEVEL_ORDER_WEBHOOK_URL;
   if (!webhookUrl) return;
@@ -71,6 +89,7 @@ export async function POST(request) {
 
   if (["checkout.session.completed", "checkout.session.async_payment_succeeded"].includes(event.type)) {
     const session = event.data?.object || {};
+    const items = addDownloadLinks(parseOrderItems(session.metadata?.order_items));
     const order = {
       eventId: event.id,
       sessionId: session.id,
@@ -78,7 +97,8 @@ export async function POST(request) {
       customerEmail: session.customer_details?.email || session.customer_email || null,
       customerName: session.customer_details?.name || null,
       shippingAddress: session.shipping_details?.address || session.customer_details?.address || null,
-      items: parseOrderItems(session.metadata?.order_items),
+      items,
+      digitalDownloadLinks: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl }) => ({ slug, downloadUrl })),
       hasPhysicalBooks: session.metadata?.has_physical_books === "true",
       receivedAt: new Date().toISOString()
     };
