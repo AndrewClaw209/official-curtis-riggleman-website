@@ -352,3 +352,19 @@ When adding or renaming a public page:
 5. Avoid indexing transactional endpoints, temporary download URLs, or duplicate query-string variants.
 
 SEO claims should match visible page content. Do not add keyword-heavy text, fake reviews, or structured data for offers that are not actually available.
+
+## 15. Blog publishing workflow
+
+The blog lives in `app/blog`. `posts.js` is the current content source; each post has a slug, title, excerpt, category, tags, publication dates, read time, and an array of sections. The index, article route, sitemap, RSS feed, metadata, and Article structured data all read from that same array.
+
+To publish a Wednesday transcript:
+
+1. Clean the transcript into a useful article rather than copying filler or repeated conversation.
+2. Add a new object to `app/blog/posts.js` with a unique lowercase hyphenated slug.
+3. Preserve Curtis&apos; meaning and voice, verify names/claims, and add a concise search-friendly excerpt.
+4. Use descriptive section headings and practical examples.
+5. Set `datePublished` and `dateModified` to the real editorial dates.
+6. Run `npm run build`; the article route, sitemap entry, RSS item, and structured data are generated automatically.
+7. Deploy and submit or inspect the sitemap in Search Console when the post is important or time-sensitive.
+
+The blog currently includes one launch article to prove the publishing path. Future transcript posts should replace the need for placeholder copy, not be appended as duplicate versions of the same lesson.

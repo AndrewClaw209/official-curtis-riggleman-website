@@ -29,6 +29,7 @@ const socialLinks = [
 
 const topTabs = [
   { label: "Training Courses", href: "/training-courses" },
+  { label: "Blog", href: "/blog" },
   { label: "Testimonies", href: "/testimonies" },
   { label: "Merch", href: "#offers" },
   { label: "Riggleman University", href: "/riggleman-university" },
