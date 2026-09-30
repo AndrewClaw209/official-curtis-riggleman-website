@@ -32,10 +32,10 @@ export default function ContactPage() {
             priority
           />
           <Image
-            src="/assets/logo-curtis-ai.png"
+            src="/assets/logo-curtis-riggleman-clean.png"
             alt="Official Curtis Riggleman"
-            width={993}
-            height={347}
+            width={967}
+            height={400}
             className="contact-portrait-logo"
           />
         </div>

@@ -139,7 +139,7 @@ export default function MediaPage() {
       <main id="main-content" className="media-page-main">
         <img
           className="media-top-logo"
-          src="/assets/logo-curtis-ai.png"
+          src="/assets/logo-curtis-riggleman-clean.png"
           alt="Official Curtis Riggleman"
         />
 

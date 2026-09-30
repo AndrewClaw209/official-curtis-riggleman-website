@@ -157,10 +157,10 @@ export default function Home() {
                 priority
               />
               <Image
-                src="/assets/logo-curtis-ai.png"
+                src="/assets/logo-curtis-riggleman-clean.png"
                 alt="Official Curtis Riggleman"
-                width={993}
-                height={347}
+                width={967}
+                height={400}
                 className="hero-center-logo-across"
                 priority
               />

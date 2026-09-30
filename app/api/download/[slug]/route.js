@@ -20,6 +20,15 @@ const TITLES = {
   "the-road-to-the-sale": "The Road to the Sale"
 };
 
+const COVERS = {
+  "closing-101": "/books/closing_101---4b0c2195-82ef-40d2-869f-10b9037ef58e.avif",
+  "built-to-lead-mindset-principles": "/books/Built_to_lead---535a5aab-d631-4b68-84ad-3ab3b6f2e26a.avif",
+  "the-first-five": "/books/The_First_Five---35d79151-6de9-4af3-8579-c3f775fee980.avif",
+  "objections-arent-real": "/books/Objections_Arent_Real---35f496a6-274c-43f3-a55f-2f74ffcdd334.avif",
+  "dial-for-dollars": "/books/Dial_For_Dollars---6e31d2c7-e0ec-4623-a9cf-f34a472c8b20.avif",
+  "the-road-to-the-sale": "/books/the-road-to-the-sale-cover.png"
+};
+
 function escapeHtml(value) {
   return value.replace(/[&<>\"']/g, (character) => ({
     "&": "&amp;",
@@ -55,10 +64,12 @@ export async function GET(request, { params }) {
   const requestUrl = new URL(request.url);
   const downloadUrl = `${requestUrl.pathname}?token=${encodeURIComponent(token)}&download=1`;
   const title = TITLES[params.slug];
+  const coverUrl = COVERS[params.slug];
 
   if (requestUrl.searchParams.get("download") !== "1") {
     const safeTitle = escapeHtml(title);
     const safeDownloadUrl = escapeHtml(downloadUrl);
+    const safeCoverUrl = escapeHtml(coverUrl);
     return new Response(`<!doctype html>
 <html lang="en">
   <head>
@@ -69,12 +80,14 @@ export async function GET(request, { params }) {
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
       body { margin: 0; min-height: 100vh; background: #0d0d0d; color: #fff8e8; font-family: Arial, Helvetica, sans-serif; display: grid; place-items: center; padding: 24px; }
-      main { width: min(680px, 100%); border: 1px solid #9d5100; background: #171717; box-shadow: 0 24px 70px #000b; text-align: center; overflow: hidden; }
-      header { background: #0d0d0d; border-bottom: 8px solid #9d5100; padding: 36px 28px 30px; }
+      main { width: min(780px, 100%); border: 1px solid #9d5100; background: #171717; box-shadow: 0 24px 70px #000b; text-align: center; overflow: hidden; }
+      header { background: #0d0d0d; border-bottom: 8px solid #9d5100; padding: 28px 28px 30px; }
+      .logo { width: min(300px, 72vw); height: auto; margin: 0 auto 18px; display: block; }
       .brand { display: inline-block; background: #e58200; color: #171717; padding: 8px 14px; font-size: 15px; letter-spacing: .02em; }
       h1 { color: #e58200; font-size: clamp(30px, 6vw, 52px); line-height: 1.05; margin: 34px 0 12px; text-transform: uppercase; }
       .rule { width: 130px; height: 4px; background: #e58200; margin: 22px auto; }
       section { padding: 34px 28px 40px; }
+      .cover { width: min(250px, 70vw); max-height: 360px; object-fit: contain; display: block; margin: 0 auto 28px; border: 1px solid #9d5100; box-shadow: 0 12px 30px #0009; }
       p { color: #f0dfbf; font-size: 18px; line-height: 1.5; margin: 0 auto 26px; }
       a { display: inline-block; background: #e58200; color: #171717; font-weight: 700; text-decoration: none; padding: 15px 24px; }
       a:hover { background: #ff9c18; }
@@ -84,8 +97,8 @@ export async function GET(request, { params }) {
   </head>
   <body>
     <main>
-      <header><span class="brand">Official Curtis Riggleman</span><h1>${safeTitle}</h1><div class="rule"></div></header>
-      <section><p>Your digital book is ready. Your download will begin automatically.</p><a href="${safeDownloadUrl}">Download your book</a><small>If the download does not start, use the button above.</small></section>
+      <header><img class="logo" src="/assets/logo-curtis-riggleman-clean.png" alt="Official Curtis Riggleman" /><span class="brand">Official Curtis Riggleman</span><h1>${safeTitle}</h1><div class="rule"></div></header>
+      <section><img class="cover" src="${safeCoverUrl}" alt="${safeTitle} book cover" /><p>Your digital book is ready. Your download will begin automatically.</p><a href="${safeDownloadUrl}">Download your book</a><small>If the download does not start, use the button above.</small></section>
     </main>
   </body>
 </html>`, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "private, no-store" } });
