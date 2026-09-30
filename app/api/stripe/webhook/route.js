@@ -80,6 +80,23 @@ function summarizeItems(items) {
   return items.map((item) => `${BOOK_TITLES[item.slug] || item.slug} — ${item.format} — quantity ${item.quantity}`).join("\n");
 }
 
+function buildDigitalLinkFields(items) {
+  return Object.fromEntries(
+    items
+      .filter((item) => item.downloadUrl)
+      .slice(0, 6)
+      .flatMap((item, index) => {
+        const number = index + 1;
+        const title = BOOK_TITLES[item.slug] || item.slug;
+        return [
+          [`digitalDownloadLink${number}Title`, title],
+          [`digitalDownloadLink${number}Url`, item.downloadUrl],
+          [`digitalDownloadLink${number}Text`, `${title}: ${item.downloadUrl}`]
+        ];
+      })
+  );
+}
+
 async function forwardOrderToGoHighLevel(order) {
   const webhookUrl = process.env.GOHIGHLEVEL_ORDER_WEBHOOK_URL;
   if (!webhookUrl) return;
@@ -135,7 +152,8 @@ export async function POST(request) {
       currency: session.currency || "usd",
       orderDate: new Date().toISOString(),
       digitalDownloadLinks: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl }) => ({ slug, downloadUrl })),
-      digitalDownloadLinksText: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl, downloadExpiresAt }) => `${slug}: ${downloadUrl} (expires ${downloadExpiresAt})`).join("\n"),
+      digitalDownloadLinksText: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl, downloadExpiresAt }) => `${BOOK_TITLES[slug] || slug}: ${downloadUrl} (expires ${downloadExpiresAt})`).join("\n\n"),
+      ...buildDigitalLinkFields(items),
       hasPhysicalBooks: session.metadata?.has_physical_books === "true",
       receivedAt: new Date().toISOString()
     };
