@@ -10,6 +10,14 @@ const DIGITAL_DOWNLOADS = {
   "dial-for-dollars": "/downloads/dial-for-dollars.pdf",
   "the-road-to-the-sale": "/downloads/the-road-to-the-sale.pdf"
 };
+const BOOK_TITLES = {
+  "closing-101": "Closing 101",
+  "built-to-lead-mindset-principles": "Built to Lead: Mindset Principles",
+  "the-first-five": "The First Five: On Board Sales Training",
+  "objections-arent-real": "Objections Aren’t Real",
+  "dial-for-dollars": "Dial for Dollars",
+  "the-road-to-the-sale": "The Road to the Sale"
+};
 
 function isValidStripeSignature(rawBody, signatureHeader, webhookSecret) {
   if (!signatureHeader) return false;
@@ -68,6 +76,10 @@ function addDownloadLinks(items) {
   }));
 }
 
+function summarizeItems(items) {
+  return items.map((item) => `${BOOK_TITLES[item.slug] || item.slug} — ${item.format} — quantity ${item.quantity}`).join("\n");
+}
+
 async function forwardOrderToGoHighLevel(order) {
   const webhookUrl = process.env.GOHIGHLEVEL_ORDER_WEBHOOK_URL;
   if (!webhookUrl) return;
@@ -111,6 +123,13 @@ export async function POST(request) {
       customerName: session.customer_details?.name || null,
       shippingAddress: session.shipping_details?.address || session.customer_details?.address || null,
       items,
+      orderItemsText: summarizeItems(items),
+      bookCount: items.reduce((total, item) => total + Number(item.quantity || 0), 0),
+      digitalBookCount: items.filter((item) => item.format === "digital").reduce((total, item) => total + Number(item.quantity || 0), 0),
+      physicalBookCount: items.filter((item) => item.format === "physical").reduce((total, item) => total + Number(item.quantity || 0), 0),
+      total: typeof session.amount_total === "number" ? session.amount_total / 100 : null,
+      currency: session.currency || "usd",
+      orderDate: new Date().toISOString(),
       digitalDownloadLinks: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl }) => ({ slug, downloadUrl })),
       digitalDownloadLinksText: items.filter((item) => item.downloadUrl).map(({ slug, downloadUrl, downloadExpiresAt }) => `${slug}: ${downloadUrl} (expires ${downloadExpiresAt})`).join("\n"),
       hasPhysicalBooks: session.metadata?.has_physical_books === "true",
