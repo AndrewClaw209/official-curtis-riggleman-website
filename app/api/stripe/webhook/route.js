@@ -37,6 +37,20 @@ function parseOrderItems(value) {
   }
 }
 
+async function forwardOrderToGoHighLevel(order) {
+  const webhookUrl = process.env.GOHIGHLEVEL_ORDER_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
+  const response = await fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event_type: "book_order_paid", ...order }),
+    signal: AbortSignal.timeout(10000)
+  });
+
+  if (!response.ok) throw new Error(`GoHighLevel webhook returned ${response.status}`);
+}
+
 export async function POST(request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -70,6 +84,12 @@ export async function POST(request) {
     };
 
     console.info("[stripe-webhook] paid book order", JSON.stringify(order));
+    try {
+      await forwardOrderToGoHighLevel(order);
+    } catch (error) {
+      console.error("[stripe-webhook] GoHighLevel forwarding failed", error.message);
+      return Response.json({ error: "Order notification could not be delivered." }, { status: 502 });
+    }
   }
 
   return Response.json({ received: true });
