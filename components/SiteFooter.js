@@ -14,7 +14,11 @@ export default function SiteFooter() {
         />
       </Link>
       <p className="site-footer-name">Official Curtis Riggleman</p>
-      <p className="site-footer-credit">AWEVO Software Solutions</p>
+      <p className="site-footer-credit">
+        <a href="https://www.awevosoftware.com" target="_blank" rel="noreferrer">
+          AWEVO Software Solutions
+        </a>
+      </p>
     </footer>
   );
 }
