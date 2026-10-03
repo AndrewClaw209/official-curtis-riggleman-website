@@ -135,7 +135,7 @@ export async function POST(request) {
   const eventType = String(event.eventType || event.type || "").toLowerCase();
   const order = event.data?.order || event.data?.entity || event.data;
   const paymentStatus = String(valueAt(order, ["paymentStatus", "payment.status"]) || "").toUpperCase();
-  const isPaidEvent = eventType.includes("order_paid") || eventType.includes("order.paid") || eventType.endsWith("paid");
+  const isPaidEvent = eventType.includes("order_paid") || eventType.includes("order.paid") || eventType.includes("payment_status_updated") || eventType.includes("payment.status.updated") || eventType.endsWith("paid");
   if (!isPaidEvent || (paymentStatus && !["PAID", "FULLY_PAID"].includes(paymentStatus))) return Response.json({ received: true, ignored: true });
 
   const rawItems = normalizeItems(order);
