@@ -96,7 +96,7 @@ External content includes YouTube embeds, the Curtis AI mobile link, the webinar
 - Supports `digital` and `physical` formats.
 - Enforces a browser-side range of 0–20 per line item.
 - Displays `$19.95` digital, `$29.95` physical, and `$11.95` physical shipping per order.
-- Sends only `{ slug, format, quantity }` to `/api/stripe/checkout`.
+- Sends only `{ slug, format, quantity }` to the active checkout route. Stripe is the default; set `NEXT_PUBLIC_PAYMENT_PROVIDER=wix` to use `/api/wix/checkout` after Wix credentials and catalog IDs are configured.
 
 The browser prices are presentation values only. Server-side Stripe Price IDs determine the actual charge.
 
@@ -106,9 +106,9 @@ The browser prices are presentation values only. Server-side Stripe Price IDs de
 
 ```text
 Customer selects format/quantity
-  -> BookCart POST /api/stripe/checkout
-  -> server validates slug, format, quantity, Price ID
-  -> Stripe Checkout Session
+  -> BookCart POST /api/stripe/checkout (default) or /api/wix/checkout
+  -> server validates slug, format, quantity, and provider catalog mapping
+  -> Stripe Checkout Session or Wix Checkout
   -> success or cancel redirect
   -> Stripe checkout.session.completed or async_payment_succeeded
   -> POST /api/stripe/webhook
@@ -125,6 +125,10 @@ The checkout route:
 7. Returns the Stripe Checkout URL.
 
 Stripe is authoritative for final amount, currency, email, shipping details, and payment status. Never use a browser total for fulfillment.
+
+### Wix feature flag
+
+The Wix adapter is feature-flagged and disabled by default. Its server route uses the Wix SDK with `WIX_API_KEY` and `WIX_SITE_ID`, maps each book/format to a Wix Stores catalog item, creates a Wix checkout, and returns the Wix-hosted checkout URL. See [`WIX_HEADLESS_SETUP.md`](./WIX_HEADLESS_SETUP.md) for the required catalog IDs and the remaining webhook activation work. Do not switch the flag until a Wix paid-order webhook is configured and tested.
 
 ## 6. Stripe webhook and order contract
 

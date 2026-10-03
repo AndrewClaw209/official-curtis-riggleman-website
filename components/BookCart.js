@@ -9,6 +9,7 @@ const CART_OPEN_EVENT = "curtis-book-cart-open";
 const PRICES = { digital: 19.95, physical: 29.95 };
 const PHYSICAL_SHIPPING = 11.95;
 const FORMAT_LABELS = { digital: "Digital Edition", physical: "Physical Book" };
+const PAYMENT_PROVIDER = process.env.NEXT_PUBLIC_PAYMENT_PROVIDER || "stripe";
 
 function readCart() {
   try {
@@ -75,7 +76,8 @@ export default function BookCart({ book, showTrigger = true }) {
     setIsCheckingOut(true);
     setError("");
     try {
-      const response = await fetch("/api/stripe/checkout", {
+      const checkoutEndpoint = PAYMENT_PROVIDER === "wix" ? "/api/wix/checkout" : "/api/stripe/checkout";
+      const response = await fetch(checkoutEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: cart.map(({ slug, format, quantity }) => ({ slug, format, quantity })) })
@@ -126,7 +128,7 @@ export default function BookCart({ book, showTrigger = true }) {
             </div>
             <div className="book-cart-total"><span>Total</span><strong>${cartTotal.toFixed(2)}</strong></div>
             {hasPhysicalBooks ? <p className="book-cart-note">Physical-book shipping: ${PHYSICAL_SHIPPING.toFixed(2)} per order.</p> : null}
-            <p className="book-cart-note">Secure payment for your books will be completed through Stripe Checkout.</p>
+            <p className="book-cart-note">Secure payment for your books will be completed through {PAYMENT_PROVIDER === "wix" ? "Wix Checkout" : "Stripe Checkout"}.</p>
             <button className="btn btn-gold" type="button" onClick={checkout} disabled={isCheckingOut}>{isCheckingOut ? "Opening checkout…" : "Continue to Checkout →"}</button>
             {error && <p className="book-cart-error" role="alert">{error}</p>}
           </>}

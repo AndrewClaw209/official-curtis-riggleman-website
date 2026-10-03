@@ -6,6 +6,7 @@ Marketing site, book storefront, digital-book delivery, and physical-book fulfil
 
 - Full developer and operations guide: [`docs/DEVELOPER_GUIDE.md`](docs/DEVELOPER_GUIDE.md)
 - Stripe and GoHighLevel setup notes: [`docs/STRIPE_WEBHOOK_SETUP.md`](docs/STRIPE_WEBHOOK_SETUP.md)
+- Wix Headless checkout migration notes: [`docs/WIX_HEADLESS_SETUP.md`](docs/WIX_HEADLESS_SETUP.md)
 
 ## Local development
 
