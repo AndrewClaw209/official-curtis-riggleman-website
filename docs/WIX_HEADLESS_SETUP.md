@@ -36,7 +36,7 @@ Add these as Vercel Production environment variables after confirming them in Cu
 - `WIX_PRODUCT_THE_ROAD_TO_THE_SALE_DIGITAL_ID`
 - `WIX_PRODUCT_THE_ROAD_TO_THE_SALE_PHYSICAL_ID`
 
-The catalog app ID for Wix Stores is fixed in `app/api/wix/checkout/route.js` as `1380b703-ce81-ff05-f115-39571d94dfcd`.
+The catalog app ID for Wix Stores is fixed in `app/api/wix/checkout/route.js` as `215238eb-22a5-4c36-9e7b-e7c08025e04e`.
 
 ## Product mapping
 

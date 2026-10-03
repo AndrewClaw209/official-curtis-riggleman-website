@@ -2,7 +2,7 @@ import { ApiKeyStrategy, createClient } from "@wix/sdk";
 import { checkout } from "@wix/ecom";
 import { getBook } from "../../../training-courses/books";
 
-const WIX_STORES_APP_ID = "1380b703-ce81-ff05-f115-39571d94dfcd";
+const WIX_STORES_APP_ID = "215238eb-22a5-4c36-9e7b-e7c08025e04e";
 const PRODUCT_IDS = {
   digital: {
     "closing-101": process.env.WIX_PRODUCT_CLOSING_101_DIGITAL_ID,
