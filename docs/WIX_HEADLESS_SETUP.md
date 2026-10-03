@@ -55,7 +55,7 @@ The export contains one physical Books product for each title. These `handleId` 
 | Dial For Dollars | `product_1763c933-3b2a-5a00-3a7c-e6c7ab6c4f96` | In stock; export price $29.00 |
 | The Road To The Sale | `product_50413557-0a7d-92b5-f828-f53fb34398c8` | Out of stock; export price $29.00 |
 
-The export does not include digital product variants. The separate digital-only export supplied on October 2 contained only the CSV header and zero product rows, so no digital Wix IDs are available yet. Digital IDs and the physical pricing discrepancy ($29.00 in Wix versus $29.95 in the current site) must be resolved before activation. Physical shipping and inventory behavior also need to be confirmed in Wix.
+The supplied physical export did not include digital product rows, and the separate digital-only export contained only the CSV header. The Wix catalog screenshot shows that digital products do exist, so those exports should be treated as incomplete rather than proof that the products are missing. Export the complete catalog (or capture the digital rows/IDs from Wix) before activation. The physical pricing discrepancy ($29.00 in Wix versus $29.95 in the current site) and physical shipping/inventory behavior also need to be resolved.
 
 ## Activating Wix checkout
 
