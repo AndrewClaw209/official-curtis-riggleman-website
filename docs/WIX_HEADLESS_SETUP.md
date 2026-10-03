@@ -42,6 +42,21 @@ The catalog app ID for Wix Stores is fixed in `app/api/wix/checkout/route.js` as
 
 Each format must be a real Wix Stores catalog item ID. Do not use the Stripe Price ID, Wix product slug, or a display name. Validate every mapping in a Wix test checkout before switching the provider flag.
 
+### Candidate physical mappings from the supplied Wix export
+
+The export contains one physical Books product for each title. These `handleId` values are candidates for the physical catalog IDs, but they still need to be confirmed against the Wix eCommerce API before being added to Vercel:
+
+| Book | Candidate Wix product ID | Export notes |
+| --- | --- | --- |
+| Closing 101 | `product_829f2c4f-b6fd-5a24-b838-32758fbe68c1` | In stock; export price $29.00 |
+| Built To Lead: Mindset Principles | `product_a2a909a3-03b8-78db-4c76-bd49c214a6b5` | In stock; export price $29.00 |
+| The First Five: On Board Sales Training | `product_ec9a6073-b68c-8fb9-e3a4-130350e3a84e` | In stock; export price $29.00 |
+| Objections Aren't Real | `product_2419aff9-1c86-c029-ea09-3c11947c5cd5` | In stock; export price $29.00 |
+| Dial For Dollars | `product_1763c933-3b2a-5a00-3a7c-e6c7ab6c4f96` | In stock; export price $29.00 |
+| The Road To The Sale | `product_50413557-0a7d-92b5-f828-f53fb34398c8` | Out of stock; export price $29.00 |
+
+The export does not include digital product variants. Digital IDs and the physical pricing discrepancy ($29.00 in Wix versus $29.95 in the current site) must be resolved before activation. Physical shipping and inventory behavior also need to be confirmed in Wix.
+
 ## Activating Wix checkout
 
 1. Add and verify the Wix credentials and all catalog IDs in Vercel Production.
