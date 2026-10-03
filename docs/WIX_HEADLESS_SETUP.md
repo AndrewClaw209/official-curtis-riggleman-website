@@ -59,16 +59,16 @@ The supplied physical export did not include digital product rows, and the separ
 
 ### Digital IDs supplied from Wix product URLs
 
-These IDs were supplied from the Wix product detail URLs. The last entry was labeled "The First Five" again, but that title is already present; it is recorded as a likely Dial For Dollars ID and must be verified in Wix before activation.
+These IDs were supplied from the Wix product detail URLs. The final ID was subsequently confirmed as Dial For Dollars.
 
 | Book | Digital Wix product ID | Status |
 | --- | --- | --- |
-| The Road To The Sale | `ddc1a627-c4e4-a17b-46ed-34049c30787d` | Supplied; verify |
-| Closing 101 | `6829518c-1344-c872-e68d-66cfb2b9c4dd` | Supplied; verify |
-| Built To Lead: Mindset Principles | `552ee6ff-cfe7-e94e-b7a7-f8234ec9ab3d` | Supplied; verify |
-| The First Five: On Board Sales Training | `53712507-0a01-31d9-2b51-154b5f6e10fa` | Supplied; verify |
-| Objections Aren't Real | `7305c519-c835-d391-dd59-8f1245fcbfb4` | Supplied; verify |
-| Dial For Dollars | `8fa58f81-6bcc-10ac-30cd-d6ee94db3ccc` | Likely; title confirmation required |
+| The Road To The Sale | `ddc1a627-c4e4-a17b-46ed-34049c30787d` | Confirmed from URL |
+| Closing 101 | `6829518c-1344-c872-e68d-66cfb2b9c4dd` | Confirmed from URL |
+| Built To Lead: Mindset Principles | `552ee6ff-cfe7-e94e-b7a7-f8234ec9ab3d` | Confirmed from URL |
+| The First Five: On Board Sales Training | `53712507-0a01-31d9-2b51-154b5f6e10fa` | Confirmed from URL |
+| Objections Aren't Real | `7305c519-c835-d391-dd59-8f1245fcbfb4` | Confirmed from URL |
+| Dial For Dollars | `8fa58f81-6bcc-10ac-30cd-d6ee94db3ccc` | Confirmed from URL |
 
 ## Activating Wix checkout
 
