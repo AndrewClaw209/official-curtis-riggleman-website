@@ -69,7 +69,10 @@ export async function POST(request) {
     const created = await wixClient.checkout.createCheckout({ channelType: "WEB", lineItems });
     const checkoutId = created?._id;
     if (!checkoutId) throw new Error("Wix did not return a checkout ID.");
-    const checkoutUrlResponse = await wixClient.checkout.getCheckoutUrl(checkoutId);
+    // Self-managed headless sites may have the standard checkout URL pointed at
+    // the site's own frontend domain. Use Wix's hosted checkout URL so the
+    // customer does not get sent to an unimplemented local /checkout route.
+    const checkoutUrlResponse = await wixClient.checkout.getWixCheckoutUrl(checkoutId);
     if (!checkoutUrlResponse?.checkoutUrl) throw new Error("Wix did not return a checkout URL.");
     return Response.json({ url: checkoutUrlResponse.checkoutUrl, checkoutId });
   } catch (error) {
